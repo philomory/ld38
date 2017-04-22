@@ -27,4 +27,12 @@ class Enemy < Unit
     end
   end
   
+  def attacked(weapon)
+    get_stunned(1)
+  end
+  
+  def die
+    @cell.occupant = nil
+  end
+  
 end

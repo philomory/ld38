@@ -1,5 +1,7 @@
 class Unit
-  def initialize
+  attr_reader :health
+  def initialize(health: 1,**kwargs)
+    @max_health = @health = health
   end
   
   def position=(new_cell)
@@ -38,8 +40,25 @@ class Unit
     false
   end
   
-  def attacked
-    puts "I was attacked!"
+  def health=(value)
+    @health = [value, @max_health].min
+    die if @health <= 0
   end
+  
+  def die
+    raise "Implement #die in #{self.class}!"
+  end
+  
+  def attacked
+    raise "Implement #attacked in #{self.class}!"
+  end
+  
+  def get_stunned(turns)
+  end
+  
+  def take_damage(amount)
+    @health -= amount
+  end
+  
   
 end

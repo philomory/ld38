@@ -8,6 +8,8 @@ class Game < Gosu::Window
   attr_reader :game_state, :world, :player, :enemies
   def initialize
     super 800, 600, false
+    
+    $game = self
 
     @input_manager = InputManager.new(self)
     self.caption = "Your Ruby/Gosu game goes here"
@@ -45,6 +47,14 @@ class Game < Gosu::Window
   
   def update
     @game_state.update
+  end
+  
+  def player_died
+    restart_level
+  end
+  
+  def restart_level
+    #TODO: Implement levels
   end
   
   def needs_cursor?
