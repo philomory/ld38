@@ -1,0 +1,17 @@
+grass:
+  image: grass.png
+  
+unit:
+  image: purple_dot.png
+  
+player:
+  image: purple_dot.png
+  
+enemy:
+  image: purple_dot.png
+  
+pacer:
+  image: purple_dot.png
+  
+wanderer:
+  image: purple_dot.png

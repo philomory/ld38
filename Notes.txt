@@ -1,0 +1,19 @@
+small world-spanning rpg/roguelike
+
+
+Small world-map with each area having small platformery levels
+
+
+Was the world always this small? I can't really remember.
+
+
+
+
+
+Small grid based world. Roguelike, you move, enemies move, etc.
+You can find knives/darts/something to throw at enemies. Maybe stun them, maybe kill them.
+Enemies move around trying to get you.
+You're trying to find... something. You don't know what it is.
+Each time you reach the goal in the level, you wake up in a smaller world than before.
+Eventually, you end up in a tiny world full of enemies you cannot escape, and lose.
+However, if you found the secret things in the prior worlds, something good happens and you are free.
