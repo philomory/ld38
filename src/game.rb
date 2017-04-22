@@ -27,6 +27,7 @@ class Game < Gosu::Window
   def draw
     Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
       @world.grid.each(&:draw)
+      @game_state.draw
     end
   end
 
@@ -40,8 +41,10 @@ class Game < Gosu::Window
   end
   
   def game_state=(state)
+    puts "Leaving state: #{@game_state}"
     @game_state.on_exit if @game_state
     @game_state = state
+    puts "Entering state: #{@game_state}"
     @game_state.on_enter if @game_state
   end
   
@@ -51,6 +54,10 @@ class Game < Gosu::Window
   
   def player_died
     restart_level
+  end
+  
+  def enemy_died(who)
+    @enemies.delete(who)
   end
   
   def restart_level

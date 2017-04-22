@@ -13,8 +13,8 @@ class Enemy < Unit
     @ready_to_move
   end
   
-  def make_your_move!
-    make_your_move
+  def make_your_move!(&callback)
+    make_your_move(&callback)
     @ready_to_move = false
   end
   
@@ -28,11 +28,12 @@ class Enemy < Unit
   end
   
   def attacked(weapon)
-    get_stunned(1)
+    take_damage(1)
   end
   
   def die
     @cell.occupant = nil
+    $game.enemy_died(self)
   end
   
 end

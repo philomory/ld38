@@ -1,4 +1,4 @@
-class Unit
+class Unit < GameObject
   attr_reader :health
   def initialize(health: 1,**kwargs)
     @max_health = @health = health
@@ -11,12 +11,17 @@ class Unit
     @cell.occupant = self if @cell
   end
     
-  def move(direction)
+  def move(direction,&callback)
     target = @cell.neighbor_in_direction(direction)
     if target.passable?
-      self.position = target
+      anim = MovementAnimation.new(self,@cell,target,250)
+      $game.game_state = GameState::PlayingAnimation.new($game,anim) do 
+        self.position = target
+        callback.call if callback
+      end
     else
       ran_into(target)
+      callback.call if callback
     end
   end
   
@@ -57,7 +62,8 @@ class Unit
   end
   
   def take_damage(amount)
-    @health -= amount
+    puts "ouch!"
+    self.health -= amount
   end
   
   

@@ -4,8 +4,8 @@ class Pacer < Enemy
     @facing = :north
   end
   
-  def make_your_move
-    move(@facing)
+  def make_your_move(&blk)
+    move(@facing,&blk)
   end
   
   def ran_into(cell)

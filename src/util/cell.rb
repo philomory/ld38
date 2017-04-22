@@ -9,7 +9,7 @@ class Cell
   
   def draw
     @terrain.draw(xpos,ypos)
-    @occupant.draw(xpos,ypos) if occupant
+    @occupant.draw(xpos,ypos) if occupant && !occupant.animating?
   end
   
   def xpos

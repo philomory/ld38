@@ -1,15 +1,22 @@
 class GameState
   class EnemyAction < GameState
     
+    
+    
+    def first_time?
+      !@already_run
+    end
+    
     def on_enter
-      if game.enemies.any?
+      if first_time? && game.enemies.any?
         setup_turn
-      else
+      elsif game.enemies.none?(&:ready_to_move?)
         game.game_state = WaitingForPlayer.new(game)
       end
     end
     
     def setup_turn
+      @already_run = true
       @last_move = 0
       game.enemies.each(&:ready_to_move!)
     end
@@ -28,7 +35,8 @@ class GameState
     end
     
     def move_next_enemy
-      game.enemies.select(&:ready_to_move?).first.make_your_move!
+      enemy = game.enemies.select(&:ready_to_move?).first
+      enemy.make_your_move! { game.game_state = self }
     end
     
   end

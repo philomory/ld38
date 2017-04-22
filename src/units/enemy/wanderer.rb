@@ -1,5 +1,5 @@
 class Wanderer < Enemy
-  def make_your_move
-    move %i(north south east west).sample
+  def make_your_move(&blk)
+    move(%i(north south east west).sample,&blk)
   end
 end
