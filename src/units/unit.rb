@@ -1,4 +1,7 @@
 class Unit < GameObject
+  self.z_index = 1
+  
+  
   attr_reader :health
   def initialize(health: 1,**kwargs)
     @max_health = @health = health
@@ -33,13 +36,7 @@ class Unit < GameObject
     self.class.name.split("::").last.downcase
   end
   
-  def image
-    ImageManager.image(imagename)
-  end
-  
-  def draw(xpos,ypos)
-    image.draw(xpos,ypos,1)
-  end
+
   
   def player?
     false
@@ -62,7 +59,6 @@ class Unit < GameObject
   end
   
   def take_damage(amount)
-    puts "ouch!"
     self.health -= amount
   end
   

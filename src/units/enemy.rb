@@ -23,8 +23,12 @@ class Enemy < Unit
   
   def ran_into(cell)
     if cell.occupant && cell.occupant.player?
-      puts "Attacking player"
+      attack(cell.occupant)
     end
+  end
+  
+  def attack(player)
+    player.attacked(self)
   end
   
   def attacked(weapon)

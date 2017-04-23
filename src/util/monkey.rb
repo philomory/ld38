@@ -11,3 +11,15 @@ class Symbol
 end
 
 
+module Kernel
+  def Ary(obj)
+    if obj.respond_to?(:to_ary)
+      obj.to_ary
+    elsif obj.nil?
+      []
+    else
+      [obj]
+    end
+  end
+end
+    

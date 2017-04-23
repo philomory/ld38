@@ -30,6 +30,10 @@ module ImageManager
       @font_paths ||= {}
       @font_paths[name] ||= File.join(MEDIA_ROOT,'fonts',_font_map[name]['path'])
     end
+    
+    def tileset(name)
+      _tiles(name)
+    end
   
     private
     
@@ -64,7 +68,7 @@ module ImageManager
   
     def _load_tiles(set)
       path = File.join(MEDIA_ROOT,'tilesets',set)
-      Gosu::Image.load_tiles(path,16,16,retro: true)
+      Gosu::Image.load_tiles(path,32,32,retro: true)
     end
   end
   

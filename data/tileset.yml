@@ -4,8 +4,14 @@ grass:
 unit:
   image: purple_dot.png
   
-player:
-  image: purple_dot.png
+player_1:
+  set: purple_man.png
+  index: 0
+  
+player_2:
+  set: purple_man.png
+  index: 1
+  
   
 enemy:
   image: purple_dot.png
@@ -15,3 +21,12 @@ pacer:
   
 wanderer:
   image: purple_dot.png
+  
+bullet:
+  image: bullet.png
+  
+rock:
+  image: rock.png
+  
+rock_bullet:
+  image: rock.png

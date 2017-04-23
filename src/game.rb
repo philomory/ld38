@@ -14,6 +14,8 @@ class Game < Gosu::Window
     @input_manager = InputManager.new(self)
     self.caption = "Your Ruby/Gosu game goes here"
     
+    @ui = UI.new(self)
+    
     @world = World.new
     
     @player = Player.new
@@ -25,9 +27,12 @@ class Game < Gosu::Window
   end
 
   def draw
-    Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
-      @world.grid.each(&:draw)
-      @game_state.draw
+    @ui.draw
+    Gosu.translate(0,UI_HEIGHT) do
+      Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
+        @world.grid.each(&:draw)
+        @game_state.draw
+      end
     end
   end
 
@@ -41,10 +46,8 @@ class Game < Gosu::Window
   end
   
   def game_state=(state)
-    puts "Leaving state: #{@game_state}"
     @game_state.on_exit if @game_state
     @game_state = state
-    puts "Entering state: #{@game_state}"
     @game_state.on_enter if @game_state
   end
   
@@ -61,6 +64,7 @@ class Game < Gosu::Window
   end
   
   def restart_level
+    warn "Implement restart_level"
     #TODO: Implement levels
   end
   

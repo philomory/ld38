@@ -3,12 +3,15 @@ class Terrain
     @registry ||= {}
     @registry[name] = object
   end
+  
+  def self.[](tag)
+    @registry[tag]
+  end
     
   
-  attr_reader :name, :color
-  def initialize(name:, passable: true, color: 0xFFFFFFFF,&blk)
-    @name, @passable, @color = name, passable, color
-    instance_exec(&blk) if block_given?
+  attr_reader :name
+  def initialize(name:, passable: true)
+    @name, @passable = name, passable
     Terrain.register(name,self)
   end
   def imagename
@@ -25,7 +28,8 @@ class Terrain
     !!@passable
   end
   
-  OutOfBounds = new(passable: false, color: 0, name: "out_of_bounds")
+  OutOfBounds = new(passable: false, name: "out_of_bounds")
+  Dirt = new(name: "dirt")
   Grass = new(name: "grass")
   
 end
