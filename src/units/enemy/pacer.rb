@@ -1,4 +1,4 @@
-class Pacer < Enemy
+class Enemy::Pacer < Enemy
   def initialize(*args)
     super
     @facing = :north
@@ -8,9 +8,14 @@ class Pacer < Enemy
     move(@facing,&blk)
   end
   
-  def ran_into(cell)
+  def ran_into(cell,direction)
     super
     @facing = -@facing
+  end
+  
+  def imagename
+    frame = ((Gosu.milliseconds % 1000) / 500) + 1
+    "pacer_#{@facing}_#{frame}"
   end
   
 end

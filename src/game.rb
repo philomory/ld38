@@ -5,25 +5,20 @@ class Game < Gosu::Window
     new.show
   end
     
-  attr_reader :game_state, :world, :player, :enemies
+  attr_reader :game_state, :world, :player, :enemies, :input_manager
   def initialize
     super 800, 600, false
     
     $game = self
 
     @input_manager = InputManager.new(self)
-    self.caption = "Your Ruby/Gosu game goes here"
+    @animation_manager = AnimationManager.new(self)
+    self.caption = "Your Ruby/Gosu game goes here" #TODO: Change caption
     
     @ui = UI.new(self)
-    
-    @world = World.new
-    
-    @player = Player.new
-    @player.position=(@world[0,0])
-    
-    @enemies = [[1,5],[2,3],[4,4]].map {|x,y| [Pacer,Wanderer].sample.new.tap {|e| e.position = @world[x,y] } }
-    
-    self.game_state = GameState::WaitingForPlayer.new(self)
+
+    @level = 1
+    setup_level
   end
 
   def draw
@@ -37,7 +32,12 @@ class Game < Gosu::Window
   end
 
   def button_down(id)
+    binding.pry if id == Gosu::KB_BACKTICK
     @input_manager.button_down(id)
+  end
+  
+  def animation_duration
+    @game_state.animation_duration
   end
   
   def handle_input(action)
@@ -52,6 +52,7 @@ class Game < Gosu::Window
   end
   
   def update
+    @animation_manager.play_if_pending!
     @game_state.update
   end
   
@@ -60,13 +61,36 @@ class Game < Gosu::Window
   end
   
   def enemy_died(who)
-    @enemies.delete(who)
+    #enemies.delete(who)
+  end
+  
+  def schedule_animation(anim,&callback)
+    @animation_manager.schedule_animation(anim,&callback)
   end
   
   def restart_level
-    warn "Implement restart_level"
-    #TODO: Implement levels
+    setup_level
   end
+  
+  def next_level
+    @level += 1
+    setup_level
+  end
+  
+  def setup_level
+    @world = World.new(@level)
+    self.game_state = GameState::WaitingForPlayer.new(self)
+  end
+    
+  def player
+    @world.player
+  end
+  
+  def enemies
+    raise "It is called after all!"
+    @world.enemies
+  end
+    
   
   def needs_cursor?
     false

@@ -21,14 +21,20 @@ class InputManager
     KbEscape => :quit
   }
   
+  attr_reader :queued_input
   def initialize(game)
     @game = game
+    @queued_input = []
     @input_bindings = DEFAULT_BINDINGS_2.dup
   end
   
   def button_down(id)
     action = @input_bindings[id]
     @game.handle_input(action)
+  end
+  
+  def queue_input(action)
+    @queued_input.push(action) if @queued_input.empty?
   end
   
 end

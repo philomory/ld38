@@ -23,14 +23,14 @@ class Player < Unit
       target = ([dir] * throw_distance).inject(@cell) do |cell,dir|
         distance += 1 
         next_cell = cell.neighbor_in_direction(dir)
-        break next_cell if next_cell.blocked?
+        break next_cell unless next_cell.passable?(weapon)
         next_cell
       end
       
       bullet = @weapon.bullet
       
       anim = MovementAnimation.new(bullet,@cell,target,distance*100)
-      $game.game_state = GameState::PlayingAnimation.new($game,anim) do
+      $game.schedule_animation(anim) do
         target.occupant.attacked(nil) if target.occupant
         end_turn!
       end
@@ -38,6 +38,24 @@ class Player < Unit
       #TODO: Display message about lacking weapons
     end
   end
+  
+  def ran_into(cell,direction,&callback)
+    if cell.prop&.can_push?(direction)
+      push(cell,direction,&callback)
+    else
+      super
+    end
+  end
+  
+  def push(cell,direction,&callback)
+    cell.prop.move(direction)
+    anim = MovementAnimation.new(self,@cell,cell,$game.animation_duration)
+    $game.schedule_animation(anim) do
+      self.position = cell
+      callback.call if callback
+    end
+  end
+  
   
   def attacked(enemy)
     take_damage(1)

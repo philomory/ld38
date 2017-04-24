@@ -1,15 +1,22 @@
 class Cell
   attr_reader :x, :y
-  attr_accessor :terrain, :occupant
+  attr_accessor :terrain, :prop
+  attr_reader :occupant
   
   def initialize(x,y,grid)
     @x, @y, @grid = x, y, grid
     @worked = false
   end
   
+  def occupant=(unit)
+    @occupant = unit
+    @prop.on_enter(unit) if @prop
+  end
+  
   def draw
     @terrain.draw(xpos,ypos)
     @occupant.draw(xpos,ypos) if occupant && !occupant.animating?
+    @prop.draw(xpos,ypos) if prop && !prop.animating?
   end
   
   def xpos
@@ -20,12 +27,12 @@ class Cell
     y*TILE_HEIGHT
   end
   
-  def passable?
-    terrain.passable? && occupant.nil?
+  def passable?(passer)
+    terrain.passable?(passer) && occupant.nil? && (prop.nil? || prop.passable?(passer))
   end
   
-  def blocked?
-    !passable?
+  def blocked?(passer)
+    !passable?(passer)
   end
   
   def neighbor_in_direction(dir)
@@ -36,6 +43,10 @@ class Cell
     when :west then west
     else raise "Invalid Direction: #{dir.inspect}"
     end
+  end
+  
+  def room_for_prop?
+    prop.nil?
   end
   
   def north; @grid[x,y-1] end
@@ -54,6 +65,9 @@ class Cell
   class OutOfBounds < Cell
     def terrain
       Terrain::OutOfBounds
+    end
+    def room_for_prop?
+      false
     end
   end
   

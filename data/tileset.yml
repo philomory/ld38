@@ -15,10 +15,7 @@ player_2:
   
 enemy:
   image: purple_dot.png
-  
-pacer:
-  image: purple_dot.png
-  
+    
 wanderer:
   image: purple_dot.png
   
@@ -30,3 +27,39 @@ rock:
   
 rock_bullet:
   image: rock.png
+  
+stone:
+  set: objects.png
+  index: 1
+  
+bush:
+  set: objects.png
+  index: 0
+  
+prop:
+  image: purple_dot.png
+  
+pacer_south_1:
+  set: enemies.png
+  index: 0
+  
+pacer_south_2:
+  set: enemies.png
+  index: 1
+  
+pacer_north_1:
+  set: enemies.png
+  index: 2
+
+pacer_north_2:
+  set: enemies.png
+  index: 3
+  
+portal_1:
+  set: objects.png
+  index: 2
+  
+portal_2:
+  set: objects.png
+  index: 3
+  

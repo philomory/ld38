@@ -8,7 +8,7 @@ class Unit < GameObject
   end
   
   def position=(new_cell)
-    raise new_cell.to_s if new_cell && new_cell.blocked?
+    raise new_cell.to_s if new_cell && new_cell.blocked?(self)
     @cell.occupant = nil if @cell
     @cell = new_cell
     @cell.occupant = self if @cell
@@ -16,20 +16,20 @@ class Unit < GameObject
     
   def move(direction,&callback)
     target = @cell.neighbor_in_direction(direction)
-    if target.passable?
-      anim = MovementAnimation.new(self,@cell,target,250)
-      $game.game_state = GameState::PlayingAnimation.new($game,anim) do 
+    if target.passable?(self)
+      anim = MovementAnimation.new(self,@cell,target,$game.animation_duration)
+      $game.schedule_animation(anim) do
         self.position = target
         callback.call if callback
       end
     else
-      ran_into(target)
-      callback.call if callback
+      ran_into(target,direction,&callback)
     end
   end
   
-  def ran_into(cell)
+  def ran_into(cell,direction,&callback)
     puts "Ran into something"
+    callback.call if callback
   end
   
   def imagename

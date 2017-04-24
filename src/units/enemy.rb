@@ -21,10 +21,11 @@ class Enemy < Unit
   def make_your_move
   end
   
-  def ran_into(cell)
+  def ran_into(cell,direction,&callback)
     if cell.occupant && cell.occupant.player?
       attack(cell.occupant)
     end
+    callback.call if callback
   end
   
   def attack(player)
@@ -38,6 +39,14 @@ class Enemy < Unit
   def die
     @cell.occupant = nil
     $game.enemy_died(self)
+  end
+  
+  def self.new(*args)
+    if self == Enemy
+      self.const_get(*args).new
+    else
+      super
+    end
   end
   
 end

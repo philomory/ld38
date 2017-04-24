@@ -24,12 +24,13 @@ class Terrain
     image.draw(xpos,ypos,0)
   end
   
-  def passable?
+  def passable?(passer)
     !!@passable
   end
   
   OutOfBounds = new(passable: false, name: "out_of_bounds")
   Dirt = new(name: "dirt")
   Grass = new(name: "grass")
+  Wall = new(name: "wall", passable: false)
   
 end

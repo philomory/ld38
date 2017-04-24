@@ -15,7 +15,7 @@ class GameState
     
     def update
       @animation.update
-    end      
-
+    end
+    
   end
 end

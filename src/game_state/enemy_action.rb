@@ -21,7 +21,7 @@ class GameState
       game.enemies.each(&:ready_to_move!)
     end
     
-    DELTA = 250
+    DELTA = 50
     
     def update
       if Gosu.milliseconds > @last_move + DELTA
@@ -37,6 +37,14 @@ class GameState
     def move_next_enemy
       enemy = game.enemies.select(&:ready_to_move?).first
       enemy.make_your_move! { game.game_state = self }
+    end
+    
+    def next_state
+      self
+    end
+    
+    def animation_duration
+      50
     end
     
   end

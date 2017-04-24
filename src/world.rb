@@ -8,14 +8,32 @@ class World
   
   def_delegators :@grid, :[]
     
-  attr_reader :grid
-  def initialize(level="level1")
+  attr_reader :grid, :player, :enemies, :props
+  def initialize(level)
+    
     level_data = load_level(level)
-    @grid = Grid.new(WIDTH,HEIGHT) {|cell| cell.terrain = level_data[cell.x,cell.y] }
+    @grid = Grid.new(WIDTH,HEIGHT) { |cell| cell.terrain = level_data[cell.x,cell.y] }
+    
+    @props = level_data.props.map do |tmo|
+      prop = Prop.new(tmo.type,tmo.properties)
+      prop.position = @grid[tmo.x,tmo.y]
+      prop
+    end
+    
+    @enemies = level_data.enemies.map do |tmo|
+      enemy = Enemy.new(tmo.type)
+      enemy.position = @grid[tmo.x,tmo.y]
+      enemy
+    end
+    
+    tmo = level_data.player
+    @player = Player.new
+    @player.position = @grid[tmo.x, tmo.y]
+     
   end
   
   def load_level(level)
-    TileMap.new(level)
+    TileMap.new("level#{level}")
   end
   
   def method_missing(name,*args,&blk)
