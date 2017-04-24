@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="17">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="37" name="objects" tilewidth="32" tileheight="32" tilecount="8" columns="8">
   <image source="../../media/tilesets/objects.png" width="256" height="32"/>
@@ -17,12 +17,12 @@
  <tileset firstgid="45" name="Enemies" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../media/tilesets/enemies.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="53" name="Player" tilewidth="32" tileheight="32" tilecount="8" columns="4">
-  <image source="../../media/tilesets/purple_man.png" width="128" height="64"/>
+ <tileset firstgid="53" name="Player" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../media/tilesets/purple_man.png" width="64" height="32"/>
  </tileset>
  <layer name="Terrain" width="12" height="8">
   <data encoding="base64">
-   EQAAABEAAAATAAAAEQAAABEAAAAYAAAAFAAAABgAAAARAAAAEQAAABMAAAASAAAAEQAAABIAAAARAAAAEQAAABEAAAAdAAAAIgAAAB8AAAARAAAAEQAAABEAAAARAAAAFAAAABEAAAARAAAAEQAAABMAAAAUAAAAEQAAABQAAAASAAAAEQAAABEAAAARAAAAFAAAABEAAAASAAAAEwAAABMAAAAUAAAAEQAAABQAAAARAAAAEwAAABMAAAARAAAAFAAAABQAAAAUAAAAEwAAABQAAAAUAAAAEQAAABQAAAARAAAAEQAAABEAAAARAAAAFAAAABEAAAAUAAAAFAAAABEAAAAUAAAAEQAAABQAAAAUAAAAEQAAABEAAAARAAAAEQAAABIAAAATAAAAEQAAABMAAAAUAAAAEQAAABQAAAARAAAAEQAAABIAAAARAAAAEQAAABEAAAAUAAAAEQAAABEAAAAUAAAAFAAAABQAAAARAAAAEQAAABEAAAARAAAA
+   EQAAABEAAAATAAAAEQAAABEAAAAYAAAAFAAAABgAAAARAAAAEQAAABMAAAASAAAAEQAAABIAAAARAAAAEQAAABEAAAAcAAAAEQAAABwAAAARAAAAEQAAABEAAAARAAAAFAAAABEAAAARAAAAEQAAABMAAAAcAAAAEQAAABwAAAASAAAAEQAAABEAAAARAAAAFAAAABEAAAASAAAAEwAAABMAAAAcAAAAEQAAABwAAAARAAAAEwAAABMAAAARAAAAFAAAABQAAAAUAAAAEwAAABQAAAAcAAAAEQAAABwAAAARAAAAEQAAABEAAAARAAAAFAAAABEAAAAUAAAAFAAAABEAAAAcAAAAEQAAABwAAAAUAAAAEQAAABEAAAARAAAAEQAAABIAAAATAAAAEQAAABMAAAAcAAAAEQAAABwAAAARAAAAEQAAABIAAAARAAAAEQAAABEAAAAUAAAAEQAAABEAAAAgAAAAFAAAACAAAAARAAAAEQAAABEAAAARAAAA
   </data>
  </layer>
  <objectgroup name="Enemies"/>
@@ -31,7 +31,5 @@
  </objectgroup>
  <objectgroup name="Props">
   <object id="14" name="Portal" type="Portal" gid="39" x="192" y="32" width="32" height="32"/>
-  <object id="18" name="Lock" type="Lock" gid="41" x="192" y="64" width="32" height="32"/>
-  <object id="19" name="Key" type="Key" gid="42" x="32" y="128" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -1,17 +1,41 @@
 grass:
-  image: grass.png
+  set: ground_tiles.png
+  index: 16
   
 unit:
   image: purple_dot.png
   
-player_1:
+player_south_1:
   set: purple_man.png
   index: 0
   
-player_2:
+player_south_2:
   set: purple_man.png
   index: 1
   
+player_north_1:
+  set: purple_man.png
+  index: 2
+  
+player_north_2:
+  set: purple_man.png
+  index: 3
+  
+player_east_1:
+  set: purple_man.png
+  index: 4
+  
+player_east_2:
+  set: purple_man.png
+  index: 5
+  
+player_west_1:
+  set: purple_man.png
+  index: 6
+  
+player_west_2:
+  set: purple_man.png
+  index: 7
   
 enemy:
   image: purple_dot.png
@@ -28,16 +52,29 @@ rock:
 rock_bullet:
   image: rock.png
   
-stone:
-  set: objects.png
-  index: 1
-  
 bush:
   set: objects.png
   index: 0
+
+stone:
+  set: objects.png
+  index: 1
+
+portal_1:
+  set: objects.png
+  index: 2
+
+portal_2:
+  set: objects.png
+  index: 3
   
-prop:
-  image: purple_dot.png
+lock:
+  set: objects.png
+  index: 4
+  
+key:
+  set: objects.png
+  index: 5
   
 pacer_south_1:
   set: enemies.png
@@ -55,11 +92,5 @@ pacer_north_2:
   set: enemies.png
   index: 3
   
-portal_1:
-  set: objects.png
-  index: 2
-  
-portal_2:
-  set: objects.png
-  index: 3
+
   

@@ -1,7 +1,7 @@
 class Prop < GameObject
   
   Prototype = Struct.new(:pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :imagename) do
-    DEFAULTS = {pushable: false, blocks_player: true, blocks_enemy: true, blocks_bullet: true, imagename: "prop" }
+    DEFAULTS = {pushable: false, blocks_player: true, blocks_enemy: true, blocks_bullet: true }
     def initialize(**kwargs)
       kwargs = DEFAULTS.merge(kwargs)
       args = members.map {|m| kwargs[m] }
@@ -31,7 +31,7 @@ class Prop < GameObject
     end
   end
   
-  attr_reader :type, :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :imagename
+  attr_reader :type, :pushable, :blocks_player, :blocks_enemy, :blocks_bullet
   def initialize(type, properties)
     @type = type.downcase.to_sym
     prototype = PROTOTYPES[@type]
@@ -57,6 +57,10 @@ class Prop < GameObject
     $game.schedule_animation(anim) do
       self.position = target
     end
+  end
+  
+  def imagename
+    @imagename || type.to_s.downcase
   end
   
   def on_enter(unit)

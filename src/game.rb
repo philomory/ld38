@@ -5,7 +5,7 @@ class Game < Gosu::Window
     new.show
   end
     
-  attr_reader :game_state, :world, :player, :enemies, :input_manager
+  attr_reader :game_state, :world, :player, :enemies, :input_manager, :level
   def initialize
     super 800, 600, false
     
@@ -17,18 +17,20 @@ class Game < Gosu::Window
     
     @ui = UI.new(self)
 
-    @level = 1
+    @level = 0
     setup_level
   end
 
   def draw
     @ui.draw
+    
     Gosu.translate(0,UI_HEIGHT) do
       Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
         @world.grid.each(&:draw)
-        @game_state.draw
+        @game_state.draw unless @game_state.fullscreen?
       end
     end
+    @game_state.draw if @game_state.fullscreen?
   end
 
   def button_down(id)
@@ -46,6 +48,7 @@ class Game < Gosu::Window
   end
   
   def game_state=(state)
+    return if @game_state&.locked?
     @game_state.on_exit if @game_state
     @game_state = state
     @game_state.on_enter if @game_state
@@ -61,7 +64,7 @@ class Game < Gosu::Window
   end
   
   def enemy_died(who)
-    #enemies.delete(who)
+    enemies.delete(who)
   end
   
   def schedule_animation(anim,&callback)
@@ -79,7 +82,8 @@ class Game < Gosu::Window
   
   def setup_level
     @world = World.new(@level)
-    self.game_state = GameState::WaitingForPlayer.new(self)
+    #self.game_state = GameState::WaitingForPlayer.new(self)
+    self.game_state = GameState::LevelSplashScreen.new(self) { self.game_state = GameState::WaitingForPlayer.new(self) }
   end
     
   def player
@@ -87,10 +91,8 @@ class Game < Gosu::Window
   end
   
   def enemies
-    raise "It is called after all!"
     @world.enemies
   end
-    
   
   def needs_cursor?
     false

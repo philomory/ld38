@@ -22,11 +22,22 @@ class TileMap
   end
   
   private
-  def load_tiles(tset)
-    ImageManager.tileset(tset["image"]["source"].split("/").last).each_with_index do |image,index|
-      register_tile(index+tset["firstgid"].to_i, Tile.new(image))
+  def load_tiles(tset,first_gid=nil)
+    if tset.has_key?("image")
+      ImageManager.tileset(tset["image"]["source"].split("/").last).each_with_index do |image,index|
+        register_tile(index+tset["firstgid"].to_i, Tile.new(image))
+      end
+      Ary(tset["tile"]).each {|props| set_tile_properties(props,tset["firstgid"]) }
+    else
+      load_tileset(tset['source'],tset['firstgid'])
     end
-    Ary(tset["tile"]).each {|props| set_tile_properties(props,tset["firstgid"]) } 
+  end
+  
+  def load_tileset(source, firstgid)
+    data = Crack::XML.parse(File.read(File.join(DATA_ROOT,"levels",source)))
+    tset = data["tileset"]
+    tset['firstgid'] = firstgid
+    load_tiles(tset)
   end
   
   def register_tile(gid, tile)
@@ -82,7 +93,7 @@ class TMapObject
   def initialize(dfn)
     dfn = dfn.dup
     @type = dfn.delete("type") || "prop"
-    @x = (dfn.delete("x").to_i / TILE_WIDTH) - 1
+    @x = (dfn.delete("x").to_i / TILE_WIDTH)
     @y = (dfn.delete("y").to_i / TILE_WIDTH) - 1
     @properties = dfn
   end

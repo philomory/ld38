@@ -5,6 +5,8 @@ class Player < Unit
   def initialize(health: 3, weapon_count: 20)
     @weapon_count = weapon_count
     @weapon = Weapon.new("rock")
+    @facing = :south
+    @keys = 0
     super
   end
   
@@ -16,7 +18,13 @@ class Player < Unit
     3
   end
   
+  def move(dir)
+    @facing = dir
+    super
+  end
+  
   def throw_weapon(dir)
+    @facing = dir
     if weapon_count > 0
       self.weapon_count -= 1
       distance = 0
@@ -56,6 +64,18 @@ class Player < Unit
     end
   end
   
+  def gain_key
+    @keys += 1
+  end
+  
+  def lose_key
+    raise unless has_key?
+    @keys -= 1
+  end
+  
+  def has_key?
+    @keys > 0
+  end
   
   def attacked(enemy)
     take_damage(1)
@@ -71,7 +91,8 @@ class Player < Unit
   end
   
   def imagename
-    Gosu.milliseconds % 1000 >= 500 ? "player_1" : "player_2" 
+    frame = ((Gosu.milliseconds % 1000) / 500) + 1
+    "player_#{@facing}_#{frame}"
   end
   
 end

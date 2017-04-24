@@ -23,4 +23,25 @@ class GameState
   def next_state
     self
   end
+  
+  def fullscreen?
+    false
+  end
+  
+  def scale_factor
+    fullscreen? ? 1 : SCALE_FACTOR
+  end
+  
+  
+  def center_x
+    @game.width / (scale_factor * 2)
+  end
+  
+  def center_y
+    @game.height / (scale_factor * 2)
+  end
+  
+  def locked?
+    false
+  end
 end
