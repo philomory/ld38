@@ -35,6 +35,7 @@ class GameState
       draw_text("Adam Gardner (@philomory)",250)
       draw_text("Additional Art",400)
       draw_text("Jessie (@lostwombat)",450)
+      draw_text("Alagard font by Pix3M",600)
     end
     
     def draw_text(msg,ypos)
