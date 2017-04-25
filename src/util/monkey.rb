@@ -8,6 +8,16 @@ class Symbol
     else raise NoMethodError, "undefined method `-@' for #{self.inspect}:Symbol"
     end
   end
+  
+  def ~@
+    case self
+    when :north then :east
+    when :east then :south
+    when :south then :west
+    when :west then :north
+    else raise NoMethodError, "undefined method `~@' for #{self.inspect}:Symbol"
+    end
+  end
 end
 
 

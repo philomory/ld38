@@ -12,7 +12,8 @@ class Prop < GameObject
   PROTOTYPES = {
     prop: Prototype.new,
     stone: Prototype.new(pushable: true, imagename: "stone"),
-    bush: Prototype.new(blocks_player: false, imagename: "bush")
+    bush: Prototype.new(blocks_player: false, imagename: "bush"),
+    rock: Prototype.new(imagename: "rock")
   }
   
   self.z_index = 2
@@ -45,7 +46,7 @@ class Prop < GameObject
   end
   
   def position=(new_cell)
-    raise new_cell.to_s if new_cell && new_cell.blocked?(self)
+    #raise new_cell.to_s if new_cell && new_cell.blocked?(self)
     @cell.prop = nil if @cell
     @cell = new_cell
     @cell.prop = self if @cell

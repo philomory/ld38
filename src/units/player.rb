@@ -51,7 +51,7 @@ class Player < Unit
     if cell.prop&.can_push?(direction)
       push(cell,direction,&callback)
     else
-      super
+      #super
     end
   end
   
@@ -79,6 +79,11 @@ class Player < Unit
   
   def attacked(enemy)
     take_damage(1)
+  end
+  
+  def take_damage(*args)
+    MediaManager.play_sfx("player_hurt")
+    super
   end
   
   

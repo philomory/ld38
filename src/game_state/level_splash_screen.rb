@@ -9,9 +9,9 @@ class GameState
       @game = game
       level = @game.level
       @message = load_message("level#{level}")
-      font_path = ImageManager.font_path('large')
-      @level_image = Gosu::Image.from_text("Level #{level}",44,font: font_path)
-      
+      font_path = MediaManager.font_path('large')
+      background_message = level == 0 ? @message : "Level #{level}"
+      @level_image = Gosu::Image.from_text(background_message,44,font: font_path)
       @points = Array.new(30) { random_point }
     end
     
@@ -28,7 +28,6 @@ class GameState
     end
   
     def on_enter
-      puts "splash"
       @start_time = Gosu.milliseconds
     end
   
@@ -45,10 +44,10 @@ class GameState
     end
   
     def draw
-      bg_color = (0xCC * (1.0 - fade_portion)).floor * 0x01000000
+      bg_color = (0xEE * (1.0 - fade_portion)).floor * 0x01000000
       Gosu.draw_rect(0,0,@game.width,@game.height,bg_color,11)
       @points.each {|x,y,c| @level_image.draw_rot(x,y,13,0,0.5,0.5,1,1,color(c)) }
-      ImageManager.font('large').draw_rel(@message,center_x, center_y,14,0.5,0.5,1,1,color)
+      MediaManager.font('large').draw_rel(@message,center_x, center_y,14,0.5,0.5,1,1,color)
     end
     
     def fade_portion
@@ -72,14 +71,12 @@ class GameState
     end
 
     def load_message(key)
-      p key
       path = File.join(DATA_ROOT,'text.yml')
       data = YAML.load_file(path)
       data[key]
     end
     
     def finish
-      puts "finish"
       @blk.call
     end
     

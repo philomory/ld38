@@ -8,7 +8,7 @@ class Weapon
     name
   end
   
-  def bullet
-    Bullet.new(self)
+  def bullet(facing=nil)
+    Bullet.new(self,facing)
   end
 end

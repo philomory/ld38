@@ -24,7 +24,7 @@ class TileMap
   private
   def load_tiles(tset,first_gid=nil)
     if tset.has_key?("image")
-      ImageManager.tileset(tset["image"]["source"].split("/").last).each_with_index do |image,index|
+      MediaManager.tileset(tset["image"]["source"].split("/").last).each_with_index do |image,index|
         register_tile(index+tset["firstgid"].to_i, Tile.new(image))
       end
       Ary(tset["tile"]).each {|props| set_tile_properties(props,tset["firstgid"]) }
@@ -92,9 +92,17 @@ class TMapObject
   attr_reader :type, :properties, :x, :y
   def initialize(dfn)
     dfn = dfn.dup
-    @type = dfn.delete("type") || "prop"
-    @x = (dfn.delete("x").to_i / TILE_WIDTH)
-    @y = (dfn.delete("y").to_i / TILE_WIDTH) - 1
-    @properties = dfn
+    @type = dfn["type"] || "prop"
+    @x = (dfn["x"].to_i / TILE_WIDTH)
+    @y = (dfn["y"].to_i / TILE_WIDTH) - 1
+    props = dfn['properties']
+    @properties = props ? hashify(props['property']) : {}
+  end
+  
+  def hashify(group)
+    ary = Ary(group)
+    hsh = {}
+    ary.each {|entry| hsh[entry["name"]] = entry["value"] }
+    hsh
   end
 end

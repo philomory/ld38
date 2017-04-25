@@ -5,12 +5,12 @@ class Bullet < GameObject
   
   self.z_index = 3
   
-  def initialize(weapon)
-    @weapon = weapon
+  def initialize(weapon,facing=nil)
+    @weapon, @facing = weapon, facing
   end
   
   def imagename
-    "#{@weapon.name}_bullet"  
+    @facing ? "#{@weapon.name}_bullet_#{@facing}" : "#{@weapon.name}_bullet"  
   end
   
 end

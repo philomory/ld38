@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="45">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../media/tilesets/objects.png" width="128" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="tag" value="bush"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="tag" value="sto"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="49" name="Enemies" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../media/tilesets/pacer.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="57" name="Player" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../media/tilesets/purple_man.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="65" name="watcher" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+  <image source="../../media/tilesets/watcher.png" width="64" height="160"/>
+ </tileset>
+ <layer name="Terrain" width="12" height="8">
+  <data encoding="base64">
+   JgAAACYAAAAmAAAAJgAAACYAAAAkAAAAEgAAACYAAAARAAAAFQAAACIAAAAjAAAAJgAAACUAAAAmAAAAJgAAACYAAAAlAAAAGAAAACYAAAARAAAAHAAAACUAAAAlAAAAJgAAACUAAAATAAAAFAAAACQAAAAlAAAAIAAAACYAAAAmAAAAIAAAACUAAAAlAAAAFAAAABEAAAATAAAAEwAAACUAAAAlAAAAJQAAACUAAAAlAAAAJQAAACUAAAAlAAAAAgAAAAMAAAAUAAAAEwAAABgAAAAlAAAAJAAAACYAAAAlAAAAJQAAACYAAAAlAAAABgAAAAcAAAAUAAAAFAAAACAAAAASAAAAJgAAACYAAAAlAAAAJQAAACUAAAAlAAAAJgAAACYAAAAmAAAAJgAAACYAAAAmAAAAJgAAACUAAAAlAAAAJQAAACUAAAAlAAAAJgAAACYAAAAlAAAAJgAAACYAAAAmAAAAJgAAACUAAAAmAAAAJQAAACUAAAAmAAAA
+  </data>
+ </layer>
+ <objectgroup name="Enemies">
+  <object id="38" name="Watcher" type="Watcher" gid="65" x="160" y="64" width="32" height="32">
+   <properties>
+    <property name="facing" value="south"/>
+   </properties>
+  </object>
+  <object id="43" name="Watcher" type="Watcher" gid="69" x="160" y="192" width="32" height="32">
+   <properties>
+    <property name="facing" value="east"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player">
+  <object id="16" name="Player" type="Player" gid="57" x="320" y="192" width="32" height="32">
+   <properties>
+    <property name="rocks" type="int" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Props">
+  <object id="14" name="Portal" type="Portal" gid="43" x="0" y="192" width="32" height="32"/>
+  <object id="24" name="Bush" type="Bush" gid="41" x="256" y="32" width="32" height="32"/>
+  <object id="36" name="Stone" type="Stone" gid="42" x="288" y="192" width="32" height="32"/>
+ </objectgroup>
+</map>

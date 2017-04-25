@@ -10,27 +10,32 @@ class Terrain
     
   
   attr_reader :name
-  def initialize(name:, passable: true)
-    @name, @passable = name, passable
+  def initialize(name:, passable: true,bullet_passable: passable)
+    @name, @passable, @bullet_passable = name, passable, bullet_passable
     Terrain.register(name,self)
   end
   def imagename
     name
   end
   def image
-    ImageManager.image(imagename)
+    MediaManager.image(imagename)
   end
   def draw(xpos,ypos)
     image.draw(xpos,ypos,0)
   end
   
   def passable?(passer)
-    !!@passable
+    case passer
+    when Weapon, Bullet then !!@bullet_passable
+    else !!@passable
+    end
   end
   
   OutOfBounds = new(passable: false, name: "out_of_bounds")
   Dirt = new(name: "dirt")
   Grass = new(name: "grass")
   Wall = new(name: "wall", passable: false)
+  Floor = new(name: "floor")
+  Empty = new(name: "empty", passable: false, bullet_passable: true)
   
 end

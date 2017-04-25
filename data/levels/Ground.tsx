@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Ground" tilewidth="32" tileheight="32" tilecount="36" columns="4">
- <image source="../../media/tilesets/ground_tiles.png" width="128" height="288"/>
+<tileset name="Ground" tilewidth="32" tileheight="32" tilecount="40" columns="4">
+ <image source="../../media/tilesets/ground_tiles.png" width="128" height="320"/>
  <tile id="0">
   <properties>
    <property name="tag" value="dirt"/>
@@ -179,6 +179,16 @@
  <tile id="35">
   <properties>
    <property name="tag" value="wall"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="tag" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="tag" value="empty"/>
   </properties>
  </tile>
 </tileset>

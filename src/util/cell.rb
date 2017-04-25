@@ -10,7 +10,7 @@ class Cell
   
   def occupant=(unit)
     @occupant = unit
-    @prop.on_enter(unit) if @prop
+    @prop.on_enter(unit) if @prop && unit
   end
   
   def draw

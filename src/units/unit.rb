@@ -1,5 +1,7 @@
 class Unit < GameObject
-  self.z_index = 1
+  def z_index
+    1
+  end
   
   
   attr_reader :health
@@ -8,7 +10,8 @@ class Unit < GameObject
   end
   
   def position=(new_cell)
-    raise new_cell.to_s if new_cell && new_cell.blocked?(self)
+    return false if new_cell && new_cell.blocked?(self)
+    #raise new_cell.to_s if new_cell && new_cell.blocked?(self)
     @cell.occupant = nil if @cell
     @cell = new_cell
     @cell.occupant = self if @cell
@@ -28,7 +31,6 @@ class Unit < GameObject
   end
   
   def ran_into(cell,direction,&callback)
-    puts "Ran into something"
     callback.call if callback
   end
   

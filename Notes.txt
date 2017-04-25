@@ -17,3 +17,10 @@ You're trying to find... something. You don't know what it is.
 Each time you reach the goal in the level, you wake up in a smaller world than before.
 Eventually, you end up in a tiny world full of enemies you cannot escape, and lose.
 However, if you found the secret things in the prior worlds, something good happens and you are free.
+
+
+
+
+
+Ok, going to need a grid. Probably going to re-use CellGrid again.
+

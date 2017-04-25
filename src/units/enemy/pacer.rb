@@ -1,7 +1,8 @@
-class Enemy::Pacer < Enemy
-  def initialize(*args)
+class Enemy::Pacer < Enemy  
+  
+  def initialize(properties)
     super
-    @facing = :north
+    @facing = (properties["facing"] || :north).to_sym
   end
   
   def make_your_move(&blk)
@@ -16,6 +17,10 @@ class Enemy::Pacer < Enemy
   def imagename
     frame = ((Gosu.milliseconds % 1000) / 500) + 1
     "pacer_#{@facing}_#{frame}"
+  end
+  
+  def draw(*args)
+    super
   end
   
 end

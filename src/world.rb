@@ -21,13 +21,13 @@ class World
     end
     
     @enemies = level_data.enemies.map do |tmo|
-      enemy = Enemy.new(tmo.type)
+      enemy = Enemy.new(tmo.type,tmo.properties)
       enemy.position = @grid[tmo.x,tmo.y]
       enemy
     end
     
     tmo = level_data.player
-    @player = Player.new
+    @player = Player.new(health:1, weapon_count: tmo.properties['rocks'].to_i || 3)
     @player.position = @grid[tmo.x, tmo.y]
      
   end

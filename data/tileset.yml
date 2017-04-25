@@ -2,6 +2,14 @@ grass:
   set: ground_tiles.png
   index: 16
   
+floor:
+  set: ground_tiles.png
+  index: 36
+  
+empty:
+  set: ground_tiles.png
+  index: 37
+  
 unit:
   image: purple_dot.png
   
@@ -43,15 +51,6 @@ enemy:
 wanderer:
   image: purple_dot.png
   
-bullet:
-  image: bullet.png
-  
-rock:
-  image: rock.png
-  
-rock_bullet:
-  image: rock.png
-  
 bush:
   set: objects.png
   index: 0
@@ -75,22 +74,129 @@ lock:
 key:
   set: objects.png
   index: 5
+
+rock:
+  set: objects.png
+  index: 6
+  
+rock_bullet:
+  set: objects.png
+  index: 6
+
   
 pacer_south_1:
-  set: enemies.png
+  set: pacer.png
   index: 0
   
 pacer_south_2:
-  set: enemies.png
+  set: pacer.png
   index: 1
   
 pacer_north_1:
-  set: enemies.png
+  set: pacer.png
   index: 2
 
 pacer_north_2:
-  set: enemies.png
+  set: pacer.png
   index: 3
+  
+pacer_east_1:
+  set: pacer.png
+  index: 4
+  
+pacer_east_2:
+  set: pacer.png
+  index: 5
+    
+pacer_west_1:
+  set: pacer.png
+  index: 6
+  
+pacer_west_2:
+  set: pacer.png
+  index: 7
+  
+watcher_south_1:
+  set: watcher.png
+  index: 0
+  
+watcher_south_2:
+  set: watcher.png
+  index: 1
+  
+watcher_north_1:
+  set: watcher.png
+  index: 2
+
+watcher_north_2:
+  set: watcher.png
+  index: 3
+  
+watcher_east_1:
+  set: watcher.png
+  index: 4
+  
+watcher_east_2:
+  set: watcher.png
+  index: 5
+    
+watcher_west_1:
+  set: watcher.png
+  index: 6
+  
+watcher_west_2:
+  set: watcher.png
+  index: 7
+  
+beam_bullet_north:
+  set: watcher.png
+  index: 8
+  
+beam_bullet_south:
+  set: watcher.png
+  index: 8
+  
+beam_bullet_east:
+  set: watcher.png
+  index: 9
+  
+beam_bullet_west:
+  set: watcher.png
+  index: 9
+  
+  
+star_1_1:
+  set: stars.png
+  index: 0
+  
+star_1_2:
+  set: stars.png
+  index: 1
+  
+star_2_1:
+  set: stars.png
+  index: 2
+  
+star_2_2:
+  set: stars.png
+  index: 3
+  
+star_3_1:
+  set: stars.png
+  index: 4
+  
+star_3_2:
+  set: stars.png
+  index: 5
+  
+background0:
+  image: background0.png  
+  
+background:
+  image: background.png
+  
+credits:
+  image: credits.png
   
 
   

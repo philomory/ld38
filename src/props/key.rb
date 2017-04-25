@@ -8,7 +8,9 @@ class Key < Prop
   end
   
   def on_enter(unit)
+    return unless unit.player?
     $game.player.gain_key
+    MediaManager.play_sfx("pickup_key")
     @cell.prop = nil
   end
   

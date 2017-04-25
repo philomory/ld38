@@ -1,0 +1,52 @@
+grass:
+  set: ground_tiles.png
+  index: 16
+  
+unit:
+  image: purple_dot.png
+
+purple_man:
+  - player_south_1
+  - player_south_2
+  - player_north_1
+  - player_north_2
+  - player_east_1
+  - player_east_2
+  - player_west_1
+  - player_west_2
+  
+enemy:
+  image: purple_dot.png
+    
+wanderer:
+  image: purple_dot.png
+  
+rock:
+  image: rock.png
+  
+rock_bullet:
+  image: rock.png
+  
+objects:
+  - bush
+  - stone
+  - portal_1
+  - portal_2
+  - lock
+  - key
+  - bullet   
+  
+pacer:
+  - pacer_south_1
+  - pacer_south_2
+  - pacer_north_1
+  - pacer_north_2
+  - pacer_east_1
+  - pacer_east_2
+  - pacer_west_1
+  - pacer_west_2
+  
+
+  
+
+  

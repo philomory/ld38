@@ -20,7 +20,8 @@ class Lock < Prop
   
   def on_enter(unit)
     $game.player.lose_key
-    @cell.terrain = Terrain::Grass
+    MediaManager.play_sfx("unlock")
+    @cell.terrain = Terrain::Floor
     @cell.prop = nil
   end
   

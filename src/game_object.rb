@@ -9,7 +9,7 @@ class GameObject
   alias_method :animating?, :animating
   
   def image
-    ImageManager.image(imagename)
+    MediaManager.image(imagename)
   end
   
   def z_index
