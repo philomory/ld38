@@ -22,17 +22,22 @@ class GameState
     end
     
     DELTA = 50
-    
+
     def update
-      if Gosu.milliseconds > @last_move + DELTA
-        @last_move = Gosu.milliseconds
-        if game.enemies.any?(&:ready_to_move?)
-          move_next_enemy
-        else
-          game.game_state = GameState::WaitingForPlayer.new(game)
-        end
-      end
+      game.enemies.select(&:ready_to_move?).each {|enemy| enemy.make_your_move! }
+      game.game_state = WaitingForPlayer.new(game) if game.animation_manager.nothing_to_do?
     end
+    
+    # def update
+    #   if Gosu.milliseconds > @last_move + DELTA
+    #     @last_move = Gosu.milliseconds
+    #     if game.enemies.any?(&:ready_to_move?)
+    #       move_next_enemy
+    #     else
+    #       game.game_state = GameState::WaitingForPlayer.new(game)
+    #     end
+    #   end
+    # end
     
     def move_next_enemy
       enemy = game.enemies.select(&:ready_to_move?).first

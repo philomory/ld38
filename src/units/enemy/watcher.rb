@@ -12,7 +12,7 @@ class Enemy::Watcher < Enemy
     check_line_of_sight
     rotate
     check_line_of_sight
-    blk.call
+    blk.call if blk
   end
   
   def rotate

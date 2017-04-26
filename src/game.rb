@@ -5,7 +5,7 @@ class Game < Gosu::Window
     new.show
   end
     
-  attr_reader :game_state, :world, :player, :enemies, :input_manager, :level
+  attr_reader :game_state, :world, :player, :enemies, :input_manager, :level, :animation_manager
   def initialize
     super 896, 690, false
     
@@ -39,6 +39,7 @@ class Game < Gosu::Window
   end
 
   def button_down(id)
+    binding.pry if id == Gosu::KB_BACKTICK
     @input_manager.button_down(id)
   end
   

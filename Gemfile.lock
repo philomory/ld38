@@ -1,11 +1,24 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    coderay (1.1.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    debug_inspector (0.0.2)
     gosu (0.11.3.1)
+    method_source (0.8.2)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     require_all (1.4.0)
     safe_yaml (1.0.4)
+    slop (3.6.0)
 
 PLATFORMS
   ruby
@@ -13,6 +26,8 @@ PLATFORMS
 DEPENDENCIES
   crack
   gosu
+  pry
+  pry-stack_explorer
   require_all
 
 RUBY VERSION
