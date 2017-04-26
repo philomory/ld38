@@ -1,6 +1,6 @@
 class Cell
   attr_reader :x, :y
-  attr_accessor :terrain, :prop
+  attr_accessor :terrain, :prop, :trigger
   attr_reader :occupant
   
   def initialize(x,y,grid)
@@ -15,6 +15,7 @@ class Cell
   
   def draw
     @terrain.draw(xpos,ypos)
+    @trigger.draw(xpos,ypos) if trigger
     @occupant.draw(xpos,ypos) if occupant && !occupant.animating?
     @prop.draw(xpos,ypos) if prop && !prop.animating?
   end
@@ -46,7 +47,7 @@ class Cell
   end
   
   def room_for_prop?
-    prop.nil?
+    prop.nil? && occupant.nil?
   end
   
   def north; @grid[x,y-1] end

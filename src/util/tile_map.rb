@@ -3,7 +3,7 @@ require 'base64'
 
 class TileMap
   
-  attr_reader :props, :enemies, :player
+  attr_reader :props, :enemies, :player, :triggers
   def initialize(map_file)
     @tiles = {}
     data = Crack::XML.parse(File.read(File.join(DATA_ROOT,"levels","#{map_file}.tmx")))
@@ -14,6 +14,7 @@ class TileMap
     object_groups = hashify(data["map"]["objectgroup"])
     @props = Ary(object_groups["Props"]["object"]).map {|o_dfn| TMapObject.new(o_dfn) }
     @enemies = Ary(object_groups["Enemies"]["object"]).map {|o_dfn| TMapObject.new(o_dfn) }
+    @triggers = Ary(object_groups["Triggers"]["object"]).map {|o_dfn| TMapObject.new(o_dfn) }
     @player = TMapObject.new(object_groups["Player"]["object"])  
   end
   

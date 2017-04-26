@@ -11,6 +11,8 @@ class World
   attr_reader :grid, :player, :enemies, :props
   def initialize(level)
     
+    Trigger.reset!
+    
     level_data = load_level(level)
     @grid = Grid.new(WIDTH,HEIGHT) { |cell| cell.terrain = level_data[cell.x,cell.y] }
     
@@ -24,6 +26,10 @@ class World
       enemy = Enemy.new(tmo.type,tmo.properties)
       enemy.position = @grid[tmo.x,tmo.y]
       enemy
+    end
+    
+    @triggers = level_data.triggers.map do |tmo|
+      Trigger.new(@grid[tmo.x,tmo.y], tmo.properties["group"])
     end
     
     tmo = level_data.player

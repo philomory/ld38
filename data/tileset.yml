@@ -82,6 +82,22 @@ rock:
 rock_bullet:
   set: objects.png
   index: 6
+  
+button_up:
+  set: objects.png
+  index: 8
+
+button_down:
+  set: objects.png
+  index: 9
+  
+barrier_1:
+  set: objects.png
+  index: 10
+  
+barrier_2:
+  set: objects.png
+  index: 11
 
   
 pacer_south_1:
