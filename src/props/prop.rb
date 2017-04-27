@@ -68,7 +68,7 @@ class Prop < GameObject
   end
   
   def can_push?(direction)
-    pushable? && @cell.neighbor_in_direction(direction).room_for_prop?
+    pushable? && @cell.neighbor_in_direction(direction).room_for_prop?(self)
   end
   
   def passable?(passer)

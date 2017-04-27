@@ -41,7 +41,7 @@ module MediaManager
     end
     
     def play_sfx(name)
-      sfx(name).play unless @mute_sfx
+      sfx(name).play(0.5) unless @mute_sfx
     end
     
     def toggle_sfx

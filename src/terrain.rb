@@ -10,8 +10,8 @@ class Terrain
     
   
   attr_reader :name
-  def initialize(name:, passable: true,bullet_passable: passable)
-    @name, @passable, @bullet_passable = name, passable, bullet_passable
+  def initialize(name:, passable: true,bullet_passable: passable,prop_passable: passable)
+    @name, @passable, @bullet_passable, @prop_passable = name, passable, bullet_passable, prop_passable
     Terrain.register(name,self)
   end
   def imagename
@@ -26,6 +26,7 @@ class Terrain
   
   def passable?(passer)
     case passer
+    when Prop then !!@prop_passable
     when Weapon, Bullet then !!@bullet_passable
     else !!@passable
     end

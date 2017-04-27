@@ -46,8 +46,8 @@ class Cell
     end
   end
   
-  def room_for_prop?
-    prop.nil? && occupant.nil?
+  def room_for_prop?(obj)
+    prop.nil? && occupant.nil? && terrain.passable?(obj)
   end
   
   def north; @grid[x,y-1] end
@@ -67,7 +67,7 @@ class Cell
     def terrain
       Terrain::OutOfBounds
     end
-    def room_for_prop?
+    def room_for_prop?(*args)
       false
     end
   end
