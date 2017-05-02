@@ -46,10 +46,6 @@ class Cell
     end
   end
   
-  def room_for_prop?(obj)
-    prop.nil? && occupant.nil? && terrain.passable?(obj)
-  end
-  
   def north; @grid[x,y-1] end
   def south; @grid[x,y+1] end
   def east;  @grid[x+1,y] end

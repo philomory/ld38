@@ -12,6 +12,10 @@ class Barrier < Prop
     !Trigger.activated?(@group)
   end
   
+  def blocks_enemy?
+    !Trigger.activated?(@group)
+  end
+  
   alias_method :blocks_enemy?, :blocks_player?
   alias_method :blocks_bullet?, :blocks_player?
   
@@ -23,6 +27,8 @@ class Barrier < Prop
     end
   end
   
-
+  def check_state
+    @cell.occupant.fry if @cell.occupant && blocks_player?
+  end
   
 end

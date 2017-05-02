@@ -53,6 +53,10 @@ class Unit < GameObject
     raise "Implement #die in #{self.class}!"
   end
   
+  def fry
+    die
+  end
+  
   def attacked
     raise "Implement #attacked in #{self.class}!"
   end

@@ -8,7 +8,7 @@ class GameState
     def on_enter
       @animation.play!(&@callback)
     end
-    
+        
     def draw
       @animation.draw
     end

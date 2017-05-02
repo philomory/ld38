@@ -48,7 +48,7 @@ class Player < Unit
   end
   
   def ran_into(cell,direction,&callback)
-    if cell.prop&.can_push?(direction)
+    if cell.occupant&.can_push?(direction)
       push(cell,direction,&callback)
     else
       #super
@@ -56,7 +56,7 @@ class Player < Unit
   end
   
   def push(cell,direction,&callback)
-    cell.prop.move(direction)
+    cell.occupant.move(direction)
     anim = MovementAnimation.new(self,@cell,cell,$game.animation_duration)
     $game.schedule_animation(anim) do
       self.position = cell

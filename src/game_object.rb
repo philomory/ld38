@@ -19,4 +19,10 @@ class GameObject
   def draw(xpos,ypos)
     image.draw(xpos,ypos,z_index)
   end
+  
+  def update
+  end
+  
+  def check_state
+  end
 end

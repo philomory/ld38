@@ -51,8 +51,7 @@
   <object id="19" name="Key" type="Key" gid="46" x="128" y="64" width="32" height="32"/>
   <object id="21" name="Lock" type="Lock" gid="45" x="192" y="96" width="32" height="32"/>
   <object id="23" name="Key" type="Key" gid="46" x="256" y="32" width="32" height="32"/>
-  <object id="24" name="Bush" type="Bush" gid="41" x="320" y="96" width="32" height="32"/>
-  <object id="25" name="Bush" type="Bush" gid="41" x="32" y="96" width="32" height="32"/>
-  <object id="30" name="Bush" type="Bush" gid="41" x="192" y="192" width="32" height="32"/>
+  <object id="24" name="Bush" type="Bush" gid="41" x="352" y="128" width="32" height="32"/>
+  <object id="25" name="Bush" type="Bush" gid="41" x="0" y="128" width="32" height="32"/>
  </objectgroup>
 </map>

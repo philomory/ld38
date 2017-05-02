@@ -76,6 +76,9 @@ class Enemy < Unit
     @turns_stunned -= 1 if stunned?
   end
   
+  def can_push?(direction)
+    false
+  end
   
   
 end

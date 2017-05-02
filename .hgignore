@@ -1,5 +1,10 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
+syntax: glob
 .DS_Store
 .tm_properties
 dist/macos/ruby-app/UniversalRuby
 dist/macos/ruby-app/Strangeness.app
+dist/win32/Strangeness
+dist/win32/*.zip
+dist/macos/*.zip
+dist/macos/Strangeness.app

@@ -85,10 +85,14 @@ class Game < Gosu::Window
     setup_level
   end
   
+  def waiting_allowed?
+    false # @world.waiting_allowed?
+  end
+  
   def next_level
     MediaManager.play_sfx('portal')
     @level += 1
-    @level <= 5 ? setup_level : to_be_continued
+    @level <= 9 ? setup_level : to_be_continued
   end
   
   def setup_level

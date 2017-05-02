@@ -29,7 +29,7 @@ class World
     end
     
     @triggers = level_data.triggers.map do |tmo|
-      Trigger.new(@grid[tmo.x,tmo.y], tmo.properties["group"])
+      Trigger.new(@grid[tmo.x,tmo.y], (tmo.properties["group"] || :default).to_sym)
     end
     
     tmo = level_data.player

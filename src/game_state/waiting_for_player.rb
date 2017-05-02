@@ -12,6 +12,12 @@ class GameState
         game.player.move(action) { game.game_state = EnemyAction.new(game) }
       when /throw_(?<dir>\w+)/
         game.player.throw_weapon($~[:dir].to_sym) { game.game_state = EnemyAction.new(game) }
+      when :wait
+        if game.waiting_allowed?
+          game.game_state = EnemyAction.new(game)
+        else
+          MediaManager.play_sfx("buzzer")
+        end
       end
     end
   end
