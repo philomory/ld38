@@ -1,41 +1,14 @@
 class InputManager
-  include Gosu
   
-  DEFAULT_BINDINGS_1 = {
-    KbUp => :north,
-    KbDown => :south,
-    KbLeft => :west,
-    KbRight => :east,
-    KbW => :north,
-    KbS => :south,
-    KbA => :west,
-    KbD => :east,
-    KbEscape => :quit,
-    KbR => :restart,
-    KbM => :toggle_music,
-    KbN => :toggle_sfx
-  }
+  METHODS = {}
   
-  MODIFIERS = [KbLeftShift, KbRightShift]
+  def self.register(key,klass)
+    METHODS[key] = klass
+  end
   
-  MODIFIED_BINDINGS_1 = {
-    :north => :throw_north,
-    :south => :throw_south,
-    :west => :throw_west,
-    :east => :throw_east
-  }
-  
-  DEFAULT_BINDINGS_2 = {
-    KbW => :north,
-    KbS => :south,
-    KbA => :west,
-    KbD => :east,
-    KbUp => :throw_north,
-    KbDown => :throw_south,
-    KbLeft => :throw_west,
-    KbRight => :throw_east,
-    KbEscape => :quit
-  }
+  def self.controls(type=:modifier)
+    METHODS[type]
+  end
   
   attr_reader :queued_input
   def initialize(game)

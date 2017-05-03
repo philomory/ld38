@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="60">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../media/tilesets/objects.png" width="128" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="tag" value="bush"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="tag" value="sto"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="53" name="Enemies" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../media/tilesets/pacer.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="61" name="Player" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../media/tilesets/purple_man.png" width="128" height="64"/>
+ </tileset>
+ <layer name="Terrain" width="12" height="8">
+  <data encoding="base64">
+   JgAAACYAAAAmAAAAGAAAACUAAAAhAAAAIgAAABcAAAARAAAAJgAAACYAAAAmAAAAJgAAACUAAAAlAAAAHAAAACUAAAAlAAAAJQAAABwAAAARAAAAEQAAACYAAAAmAAAAJgAAABgAAAAlAAAAHAAAACUAAAAkAAAAJQAAABwAAAAUAAAAEwAAABEAAAAmAAAAJgAAABwAAAAlAAAAIAAAACUAAAAlAAAAJQAAABwAAAARAAAAEwAAABMAAAAmAAAAIQAAABsAAAAlAAAAJQAAACUAAAAYAAAAJQAAABwAAAASAAAAEQAAABEAAAAmAAAAJQAAABwAAAAlAAAAJAAAACUAAAAcAAAAJQAAACAAAAAUAAAAEQAAABEAAAAmAAAAIQAAABsAAAAlAAAAJQAAACUAAAAcAAAAJQAAACUAAAARAAAAEQAAACYAAAAmAAAAJgAAACAAAAAlAAAAIQAAACIAAAAeAAAAIgAAACMAAAARAAAAJgAAACYAAAAmAAAA
+  </data>
+ </layer>
+ <objectgroup name="Enemies">
+  <object id="49" name="Pacer" type="Pacer" gid="53" x="64" y="192" width="32" height="32">
+   <properties>
+    <property name="facing" value="south"/>
+   </properties>
+  </object>
+  <object id="50" name="Pacer" type="Pacer" gid="53" x="128" y="32" width="32" height="32">
+   <properties>
+    <property name="facing" value="south"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Triggers"/>
+ <objectgroup name="Player">
+  <object id="16" name="Player" type="Player" gid="61" x="320" y="160" width="32" height="32">
+   <properties>
+    <property name="rocks" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Props">
+  <object id="14" name="Portal" type="Portal" gid="43" x="0" y="192" width="32" height="32"/>
+  <object id="53" name="Stone" type="Stone" gid="42" x="128" y="64" width="32" height="32"/>
+  <object id="54" name="Stone" type="Stone" gid="42" x="96" y="224" width="32" height="32"/>
+  <object id="55" name="Lock" type="Lock" gid="45" x="32" y="192" width="32" height="32"/>
+  <object id="57" name="Key" type="Key" gid="46" x="32" y="64" width="32" height="32"/>
+  <object id="59" name="Bush" type="Bush" gid="41" x="256" y="256" width="32" height="32"/>
+  <object id="58" name="Bush" type="Bush" gid="41" x="256" y="32" width="32" height="32"/>
+ </objectgroup>
+</map>

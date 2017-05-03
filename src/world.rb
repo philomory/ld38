@@ -13,7 +13,7 @@ class World
     
     Trigger.reset!
     
-    level_data = load_level(level)
+    level_data = TileMap.new(level)
     @grid = Grid.new(WIDTH,HEIGHT) { |cell| cell.terrain = level_data[cell.x,cell.y] }
     
     @props = level_data.props.map do |tmo|
@@ -36,10 +36,6 @@ class World
     @player = Player.new(health:1, weapon_count: tmo.properties['rocks'].to_i || 3)
     @player.position = @grid[tmo.x, tmo.y]
      
-  end
-  
-  def load_level(level)
-    TileMap.new("level#{level}")
   end
   
   def method_missing(name,*args,&blk)

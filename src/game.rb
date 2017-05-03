@@ -11,11 +11,13 @@ class Game < Gosu::Window
     
     $game = self
 
-    @input_manager = InputManager.new(self)
+    @input_manager = InputManager.controls(:modifier).new(self)
     @animation_manager = AnimationManager.new(self)
     self.caption = "Strangeness"
     
     @ui = UI.new(self)
+    
+    @levels = YAML.load_file(File.join(DATA_ROOT,'levels.yml'))
 
     @level = 0
     setup_level
@@ -92,11 +94,11 @@ class Game < Gosu::Window
   def next_level
     MediaManager.play_sfx('portal')
     @level += 1
-    @level <= 9 ? setup_level : to_be_continued
+    @level < @levels.count ? setup_level : to_be_continued
   end
   
   def setup_level
-    @world = World.new(@level)
+    @world = World.new(@levels[@level])
     #self.game_state = GameState::WaitingForPlayer.new(self)
     self.game_state = GameState::LevelSplashScreen.new(self) { self.game_state = GameState::WaitingForPlayer.new(self) }
   end
