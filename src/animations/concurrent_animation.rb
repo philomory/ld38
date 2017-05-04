@@ -26,5 +26,9 @@ class ConcurrentAnimation < Animation
     @animations.each(&:draw)
   end
   
+  def on_end
+    @animations.each {|child| child.finish unless child.finished? }
+  end
+  
    
 end

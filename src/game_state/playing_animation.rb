@@ -17,5 +17,9 @@ class GameState
       @animation.update
     end
     
+    def handle_input(action)
+      super
+      @animation.finish
+    end
   end
 end
