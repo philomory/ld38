@@ -37,7 +37,7 @@ class Player < Unit
       
       bullet = @weapon.bullet
       
-      anim = MovementAnimation.new(bullet,@cell,target,distance*100)
+      anim = MovementAnimation.new(bullet,@cell,target,distance*100,false)
       $game.schedule_animation(anim) do
         target.occupant.attacked(nil) if target.occupant
         end_turn!

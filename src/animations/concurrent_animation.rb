@@ -30,5 +30,9 @@ class ConcurrentAnimation < Animation
     @animations.each {|child| child.finish unless child.finished? }
   end
   
+  def skippable?
+    @animations.all?(&:skippable?)
+  end
+  
    
 end

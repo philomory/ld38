@@ -7,6 +7,8 @@ class GameState
     
     def on_enter
       @animation.play!(&@callback)
+      input = @game.input_manager.queued_input.shift
+      handle_input(input) if input
     end
         
     def draw
@@ -19,7 +21,7 @@ class GameState
     
     def handle_input(action)
       super
-      @animation.finish
+      @animation.finish if @animation.skippable?
     end
   end
 end

@@ -1,9 +1,9 @@
 class MovementAnimation < Animation
-  def initialize(object,start_pos,end_pos,duration)
+  def initialize(object,start_pos,end_pos,duration,skippable=true)
     @object = object
     @start_pos = position_from(start_pos)
     @end_pos = position_from(end_pos)
-    super(duration)
+    super(duration,skippable)
   end
   
   def on_start

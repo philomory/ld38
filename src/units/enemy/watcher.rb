@@ -35,7 +35,7 @@ class Enemy::Watcher < Enemy
     return false unless target.occupant&.player?
     bullet = @weapon.bullet(@facing)
     
-    anim = MovementAnimation.new(bullet,@cell.neighbor_in_direction(@facing),target,distance*25)
+    anim = MovementAnimation.new(bullet,@cell.neighbor_in_direction(@facing),target,distance*25,false)
     $game.schedule_animation(anim) do
       #binding.pry
       target.occupant.attacked(nil) if target.occupant

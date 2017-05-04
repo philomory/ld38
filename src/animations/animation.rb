@@ -1,6 +1,6 @@
 class Animation
-  def initialize(duration)
-    @__duration = duration.to_f
+  def initialize(duration,skippable = true)
+    @__duration, @__skippable = duration.to_f, skippable
   end
   
   def update
@@ -35,6 +35,10 @@ class Animation
   
   def playing?
     started? && !finished?
+  end
+  
+  def skippable?
+    @__skippable
   end
   
   def finish
