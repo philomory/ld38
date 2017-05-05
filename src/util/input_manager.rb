@@ -11,29 +11,29 @@ class InputManager
   end
   
   def self.input_style=(key)
-    $game.input_manager = controls(key).new($game)
+    @current_manager = controls(key).new
   end
   
-  attr_reader :queued_input
-  def initialize(game)
-    @game = game
-    @queued_input = []
-    @input_bindings = DEFAULT_BINDINGS_1.dup
-    @modified_bindings = MODIFIED_BINDINGS_1.dup
+  def self.current_manager
+    @current_manager ||= controls.new
   end
   
-  def button_down(id)
-    action = @input_bindings[id]
-    action = (@modified_bindings[action] || action) if modifier_down?
-    @game.handle_input(action)
+  def self.menu_controls
+    @menu_controls ||= controls(:menu).new
   end
   
-  def queue_input(action)
-    @queued_input.push(action) if @queued_input.empty?
+  def self.button_down(id)
+    action = current_manager.action_for_button_id(id)
+    action ||= menu_controls.action_for_button_id(id) if $game.in_menu?
+    $game.handle_input(action)
   end
   
-  def modifier_down?
-    MODIFIERS.any? {|key| $game.button_down?(key) }
+  def self.queue_input(action)
+    current_manager.queue_input(action)
   end
   
+  def self.queued_input
+    current_manager.queued_input
+  end
+
 end

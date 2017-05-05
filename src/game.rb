@@ -12,7 +12,7 @@ class Game < Gosu::Window
     
     $game = self
 
-    @input_manager = InputManager.controls(:modifier).new(self)
+    @input_manager = InputManager
     @animation_manager = AnimationManager.new(self)
     @game_state = GameState::TitleScreen.new(self)
 
@@ -52,8 +52,11 @@ class Game < Gosu::Window
 
   def button_down(id)
     binding.pry if id == Gosu::KB_BACKTICK
-    @game_state = GameState::MainMenu.new(self) if id == Gosu::KbP
-    @input_manager.button_down(id)
+    if @game_state.needs_raw_input?
+      @game_state.button_down(id)
+    else
+      @input_manager.button_down(id)
+    end
   end
   
   def animation_duration
@@ -128,5 +131,9 @@ class Game < Gosu::Window
   
   def needs_cursor?
     false
+  end
+  
+  def in_menu?
+    @game_state.kind_of?(GameState::Menu)
   end
 end

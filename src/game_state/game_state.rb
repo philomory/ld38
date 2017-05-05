@@ -24,10 +24,6 @@ class GameState
     self
   end
   
-  def fullscreen?
-    false
-  end
-  
   def scale_factor
     fullscreen? ? 1 : SCALE_FACTOR
   end
@@ -47,5 +43,13 @@ class GameState
   
   def draw_world?
     true
+  end
+  
+  def fullscreen?
+    false
+  end
+  
+  def needs_raw_input?
+    false
   end
 end

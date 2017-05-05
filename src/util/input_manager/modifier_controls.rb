@@ -3,7 +3,7 @@ class InputManager
 
     InputManager.register(:modifier, self)
     
-    DEFAULT_BINDINGS_1 = {
+    DEFAULT_BINDINGS = {
       KbUp => :north,
       KbDown => :south,
       KbLeft => :west,
@@ -16,39 +16,53 @@ class InputManager
       KbR => :restart,
       KbM => :toggle_music,
       KbN => :toggle_sfx,
-      KbSpace => :accept,
-      KbEnter => :accept
     }
   
     MODIFIERS = [KbLeftShift, KbRightShift]
   
-    MODIFIED_BINDINGS_1 = {
+    MODIFIED_BINDINGS = {
       :north => :throw_north,
       :south => :throw_south,
       :west => :throw_west,
       :east => :throw_east
     }
+    
+    BIND_LIST = {
+      north: "Move Up",
+      sourth: "Move Down",
+      west: "Move Left",
+      east: "Move Right",
+      modifier: "Hold for Throw",
+      quit: "Quit Game",
+      restart: "Restart Level",
+      toggle_music: "Music On/Off",
+      toggle_sfx: "SFX On/Off"     
+    }
 
     attr_reader :queued_input
-    def initialize(game)
-      @game = game
-      @queued_input = []
-      @input_bindings = DEFAULT_BINDINGS_1.dup
-      @modified_bindings = MODIFIED_BINDINGS_1.dup
+    def setup_bindings
+      @input_bindings = DEFAULT_BINDINGS.dup
+      @modified_bindings = MODIFIED_BINDINGS.dup
+      @modifiers = MODIFIERS.dup
+    end
+    
+    def bindings=(bindings)
+      @modifiers = [bindings.delete(:modifier)]
+      @input_bindings = bindings.invert
+    end
+    
+    def bind_list
+      self.class::BIND_LIST
     end
   
-    def button_down(id)
+    def action_for_button_id(id)
       action = @input_bindings[id]
       action = (@modified_bindings[action] || action) if modifier_down?
-      @game.handle_input(action)
-    end
-  
-    def queue_input(action)
-      @queued_input.push(action) if @queued_input.empty?
+      action
     end
   
     def modifier_down?
-      MODIFIERS.any? {|key| $game.button_down?(key) }
+      @modifiers.any? {|key| $game.button_down?(key) }
     end
     
   end
