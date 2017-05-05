@@ -4,8 +4,9 @@ class Game < Gosu::Window
   def self.play!
     new.show
   end
-    
-  attr_reader :game_state, :world, :player, :enemies, :input_manager, :level, :animation_manager
+  
+  attr_accessor :input_manager #TODO: make static on InputManager class
+  attr_reader :game_state, :world, :player, :enemies, :level, :animation_manager
   def initialize
     super 896, 690, false
     
@@ -13,35 +14,45 @@ class Game < Gosu::Window
 
     @input_manager = InputManager.controls(:modifier).new(self)
     @animation_manager = AnimationManager.new(self)
+    @game_state = GameState::TitleScreen.new(self)
+
     self.caption = "Strangeness"
     
     @ui = UI.new(self)
     
     @levels = YAML.load_file(File.join(DATA_ROOT,'levels.yml'))
 
+    MediaManager.play_music
+  end
+  
+  def start_game
     @level = 0
     setup_level
-    MediaManager.play_music
   end
 
   def draw
-    @ui.draw
-    
-    Gosu.translate(0,UI_HEIGHT) do
-      Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
-        MediaManager.image("background").draw(0,0,0)
-        Gosu.translate(TILE_WIDTH,TILE_HEIGHT) do
-          @world.grid.each(&:draw)
-          @game_state.draw unless @game_state.fullscreen?
+    if @game_state.draw_world?
+      @ui.draw
+      
+      Gosu.translate(0,UI_HEIGHT) do
+        Gosu.scale(SCALE_FACTOR,SCALE_FACTOR,0,0) do
+          MediaManager.image("background").draw(0,0,0)
+          Gosu.translate(TILE_WIDTH,TILE_HEIGHT) do
+            @world.grid.each(&:draw)
+            @game_state.draw unless @game_state.fullscreen?
+          end
         end
+        MediaManager.image("background0").draw(0,0,0) if @level == 0
       end
-      MediaManager.image("background0").draw(0,0,0) if @level == 0
+      @game_state.draw if @game_state.fullscreen?
+    else
+      @game_state.draw
     end
-    @game_state.draw if @game_state.fullscreen?
   end
 
   def button_down(id)
     binding.pry if id == Gosu::KB_BACKTICK
+    @game_state = GameState::MainMenu.new(self) if id == Gosu::KbP
     @input_manager.button_down(id)
   end
   

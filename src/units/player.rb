@@ -50,6 +50,8 @@ class Player < Unit
   def ran_into(cell,direction,&callback)
     if cell.occupant&.can_push?(direction)
       push(cell,direction,&callback)
+    elsif cell.occupant&.deadly?
+      die
     else
       #super
     end

@@ -214,5 +214,9 @@ background:
 credits:
   image: credits.png
   
-
+main_menu: 
+  image: credits.png
+  
+title_screen:
+  image: title_screen.png
   

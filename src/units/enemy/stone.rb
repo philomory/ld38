@@ -16,4 +16,8 @@ class Enemy::Stone < Enemy
     end
   end
   
+  def deadly?
+    false
+  end
+  
 end

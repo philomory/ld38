@@ -10,6 +10,10 @@ class InputManager
     METHODS[type]
   end
   
+  def self.input_style=(key)
+    $game.input_manager = controls(key).new($game)
+  end
+  
   attr_reader :queued_input
   def initialize(game)
     @game = game

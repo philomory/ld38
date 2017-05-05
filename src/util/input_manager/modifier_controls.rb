@@ -15,7 +15,9 @@ class InputManager
       KbEscape => :quit,
       KbR => :restart,
       KbM => :toggle_music,
-      KbN => :toggle_sfx
+      KbN => :toggle_sfx,
+      KbSpace => :accept,
+      KbEnter => :accept
     }
   
     MODIFIERS = [KbLeftShift, KbRightShift]

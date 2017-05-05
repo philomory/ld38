@@ -1,7 +1,7 @@
 class GameState
   attr_reader :game
-  def initialize(game)
-    @game = game
+  def initialize(game = $game)
+    @game = game 
   end
   
   def handle_input(action)
@@ -43,5 +43,9 @@ class GameState
   
   def locked?
     false
+  end
+  
+  def draw_world?
+    true
   end
 end

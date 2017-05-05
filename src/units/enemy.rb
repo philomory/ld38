@@ -80,5 +80,9 @@ class Enemy < Unit
     false
   end
   
+  def deadly?
+    true
+  end
+  
   
 end
