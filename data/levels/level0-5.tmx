@@ -44,7 +44,7 @@
  <objectgroup name="Player">
   <object id="16" name="Player" type="Player" gid="61" x="32" y="128" width="32" height="32">
    <properties>
-    <property name="rocks" type="int" value="1"/>
+    <property name="rocks" type="int" value="2"/>
    </properties>
   </object>
  </objectgroup>

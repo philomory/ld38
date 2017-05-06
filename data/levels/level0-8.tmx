@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="85">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../media/tilesets/objects.png" width="128" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="tag" value="bush"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="tag" value="sto"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="53" name="Enemies" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../media/tilesets/pacer.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="61" name="Player" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../media/tilesets/purple_man.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="69" name="watcher" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+  <image source="../../media/tilesets/watcher.png" width="64" height="160"/>
+ </tileset>
+ <tileset firstgid="79" name="Sentry" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+  <image source="../../media/tilesets/sentry.png" width="64" height="160"/>
+ </tileset>
+ <layer name="Terrain" width="12" height="8">
+  <data encoding="base64">
+   JQAAACUAAAAlAAAAJQAAACUAAAAlAAAAJgAAAAEAAAAOAAAAAgAAAA8AAAAUAAAAJQAAABgAAAAlAAAAGAAAACUAAAAkAAAAEwAAAAwAAAAUAAAADAAAACYAAAARAAAAJQAAABwAAAAlAAAAHAAAACUAAAAmAAAAEwAAABIAAAATAAAAJgAAABQAAAATAAAAJQAAACAAAAAlAAAAIAAAACUAAAAlAAAAEwAAACYAAAAmAAAAEAAAABMAAAAUAAAAJQAAACUAAAAlAAAAJQAAACUAAAAYAAAAJgAAABQAAAAUAAAAJgAAACYAAAATAAAAJgAAACUAAAAlAAAAJQAAACYAAAAcAAAAFAAAABMAAAATAAAAEQAAABMAAAAUAAAAJgAAACYAAAAhAAAAIgAAACIAAAAfAAAAEgAAACEAAAAiAAAAIgAAACIAAAAjAAAAJQAAACUAAAAlAAAAJQAAACUAAAAlAAAAJQAAACUAAAAlAAAAJQAAACUAAAAlAAAA
+  </data>
+ </layer>
+ <objectgroup name="Triggers">
+  <object id="75" name="Trigger" type="Trigger" gid="49" x="64" y="256" width="32" height="32">
+   <properties>
+    <property name="group" value="first"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player">
+  <object id="16" name="Player" type="Player" gid="61" x="0" y="256" width="32" height="32">
+   <properties>
+    <property name="rocks" type="int" value="10"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemies">
+  <object id="52" name="Pacer" type="Pacer" gid="59" x="352" y="256" width="32" height="32">
+   <properties>
+    <property name="facing" value="west"/>
+   </properties>
+  </object>
+  <object id="77" name="Sentry" type="Sentry" gid="79" x="256" y="160" width="32" height="32">
+   <properties>
+    <property name="facing" value="south"/>
+   </properties>
+  </object>
+  <object id="80" name="Sentry" type="Sentry" gid="86" x="224" y="96" width="32" height="32">
+   <properties>
+    <property name="facing" value="west"/>
+   </properties>
+  </object>
+  <object id="79" name="Sentry" type="Sentry" gid="81" x="256" y="64" width="32" height="32">
+   <properties>
+    <property name="facing" value="north"/>
+   </properties>
+  </object>
+  <object id="78" name="Sentry" type="Sentry" gid="84" x="320" y="96" width="32" height="32">
+   <properties>
+    <property name="facing" value="east"/>
+   </properties>
+  </object>
+  <object id="84" name="Pacer" type="Pacer" gid="53" x="64" y="128" width="32" height="32">
+   <properties>
+    <property name="facing" value="south"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Props">
+  <object id="14" name="Portal" type="Portal" gid="43" x="160" y="32" width="32" height="32"/>
+  <object id="76" name="Barrier" type="Barrier" gid="51" x="288" y="256" width="32" height="32">
+   <properties>
+    <property name="group" value="first"/>
+   </properties>
+  </object>
+  <object id="82" name="Barrier" type="Barrier" gid="51" x="0" y="64" width="32" height="32">
+   <properties>
+    <property name="group" value="first"/>
+   </properties>
+  </object>
+  <object id="83" name="Barrier" type="Barrier" gid="51" x="0" y="64" width="32" height="32">
+   <properties>
+    <property name="group" value="first"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
