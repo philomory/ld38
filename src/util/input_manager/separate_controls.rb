@@ -13,9 +13,7 @@ class InputManager
       KbLeft => :throw_west,
       KbRight => :throw_east,
       KbEscape => :pause,
-      KbR => :restart,
-      KbM => :toggle_music,
-      KbN => :toggle_sfx
+      KbR => :restart
     }.freeze
     
     BIND_LIST = {
@@ -28,9 +26,7 @@ class InputManager
       throw_west: "Throw Left",
       throw_east: "Throw Right",
       pause: "Pause Game",
-      restart: "Restart Level",
-      toggle_music: "Music On/Off",
-      toggle_sfx: "SFX On/Off"     
+      restart: "Restart Level" 
     }.freeze
     
     def setup_bindings

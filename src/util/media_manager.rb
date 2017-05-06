@@ -61,7 +61,7 @@ module MediaManager
       case level
       when  0..5  then "oceans"
       when  6..10 then "ghost"
-      when 11..15 then "cheese"
+      when 11..20 then "cheese" #TODO: Make fourth song
       else "oceans"
       end
     end
@@ -85,7 +85,7 @@ module MediaManager
     end
     
     def toggle_music
-      Gosu::Song.current_song ? stop_music : play_music(_song_for_level)
+      Gosu::Song.current_song ? stop_music : play_music
     end
   
     private  

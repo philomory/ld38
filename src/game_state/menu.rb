@@ -30,7 +30,8 @@ class GameState
       @options.each_with_index do |option,index|
         scale = (index == @position) ? 1.5 : 1
         ypos = menu_start_pos + (75 * index)
-        draw_text(option[:text],ypos,scale)
+        text = option[:text].respond_to?(:call) ? option[:text].call : option[:text]
+        draw_text(text,ypos,scale)
       end
     end
     
@@ -39,8 +40,16 @@ class GameState
       when :south, :throw_south then @position += 1
       when :north, :throw_north then @position -= 1
       when :accept then trigger_selected
+      when :pause then on_menu_button
       end
       @position %= @options.length
+    end
+    
+    def on_menu_button
+      back
+    end
+    
+    def back
     end
       
     def transition_to(state)

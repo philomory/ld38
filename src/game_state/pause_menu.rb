@@ -8,5 +8,9 @@ class GameState
       add_option("Return to Main Menu") { $game.paused = false; transition_to(GameState::MainMenu.new) }
     end
     
+    def on_menu_button
+      $game.unpause
+    end
+    
   end
 end

@@ -7,4 +7,9 @@ class Enemy::Sentry < Enemy::Watcher
     10
   end 
   
+  def imagename
+    frame = ((Gosu.milliseconds % 1000) / 500) + 1
+    "sentry_#{@facing}_#{frame}"
+  end
+  
 end

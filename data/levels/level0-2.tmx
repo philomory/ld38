@@ -55,7 +55,7 @@
  <objectgroup name="Player">
   <object id="16" name="Player" type="Player" gid="61" x="64" y="256" width="32" height="32">
    <properties>
-    <property name="rocks" type="int" value="0"/>
+    <property name="rocks" type="int" value="3"/>
    </properties>
   </object>
  </objectgroup>

@@ -7,5 +7,9 @@ class GameState
       add_option("Options") { transition_to(GameState::ConfigMenu.new) }
       add_option("Quit Game") { exit }
     end
+    
+    def on_menu_button
+      exit
+    end
   end
 end
