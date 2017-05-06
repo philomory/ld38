@@ -66,7 +66,6 @@ class Game < Gosu::Window
   def handle_input(action)
     case action
     when :quit then exit
-    when :restart then restart_level
     when :toggle_music then MediaManager.toggle_music
     when :toggle_sfx then MediaManager.toggle_sfx
     else @game_state.handle_input(action)

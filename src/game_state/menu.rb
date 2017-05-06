@@ -19,21 +19,25 @@ class GameState
       @options << {text: text, action: blk }
     end
     
+    def menu_start_pos
+      300
+    end
+    
     def draw
       #bg_color = (0xEE * (1.0 - fade_portion)).floor * 0x01000000
       @background_image.draw(0,0,11)
       draw_text(@title,100)
       @options.each_with_index do |option,index|
         scale = (index == @position) ? 1.5 : 1
-        ypos = 300 + (75 * index)
+        ypos = menu_start_pos + (75 * index)
         draw_text(option[:text],ypos,scale)
       end
     end
     
     def handle_input(action)
       case action
-      when :south then @position += 1
-      when :north then @position -= 1
+      when :south, :throw_south then @position += 1
+      when :north, :throw_north then @position -= 1
       when :accept then trigger_selected
       end
       @position %= @options.length

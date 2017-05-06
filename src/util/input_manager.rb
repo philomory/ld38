@@ -36,4 +36,8 @@ class InputManager
     current_manager.queued_input
   end
 
+  def self.restore_default_bindings
+    current_manager.restore_default_bindings
+  end
+
 end

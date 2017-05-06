@@ -16,20 +16,20 @@ class InputManager
       KbR => :restart,
       KbM => :toggle_music,
       KbN => :toggle_sfx,
-    }
+    }.freeze
   
-    MODIFIERS = [KbLeftShift, KbRightShift]
+    MODIFIERS = [KbLeftShift, KbRightShift].freeze
   
     MODIFIED_BINDINGS = {
       :north => :throw_north,
       :south => :throw_south,
       :west => :throw_west,
       :east => :throw_east
-    }
+    }.freeze
     
     BIND_LIST = {
       north: "Move Up",
-      sourth: "Move Down",
+      south: "Move Down",
       west: "Move Left",
       east: "Move Right",
       modifier: "Hold for Throw",
@@ -37,10 +37,14 @@ class InputManager
       restart: "Restart Level",
       toggle_music: "Music On/Off",
       toggle_sfx: "SFX On/Off"     
-    }
+    }.freeze
 
     attr_reader :queued_input
     def setup_bindings
+      restore_default_bindings
+    end
+    
+    def restore_default_bindings
       @input_bindings = DEFAULT_BINDINGS.dup
       @modified_bindings = MODIFIED_BINDINGS.dup
       @modifiers = MODIFIERS.dup
@@ -52,7 +56,14 @@ class InputManager
     end
     
     def bind_list
-      self.class::BIND_LIST
+      self.class::BIND_LIST.dup
+    end
+    
+    def current_bindings
+      action_keys = Hash.new {|h,k| h[k] = []}
+      @input_bindings.each_pair {|key,action| action_keys[action] << key }
+      action_keys[:modifier] = @modifiers
+      bind_list.map {|action, desc| [desc, action_keys[action]] }
     end
   
     def action_for_button_id(id)

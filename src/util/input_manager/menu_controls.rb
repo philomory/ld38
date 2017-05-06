@@ -12,7 +12,7 @@ class InputManager
       KbSpace => :accept,
       KbEnter => :accept,
       KbReturn => :accept
-    }
+    }.freeze
     
     def setup_bindings
     end
