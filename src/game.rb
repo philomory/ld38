@@ -126,6 +126,7 @@ class Game < Gosu::Window
   end
   
   def setup_level
+    MediaManager.play_song_for_level(@level)
     @world = World.new(@levels[@level])
     #self.game_state = GameState::WaitingForPlayer.new(self)
     self.game_state = GameState::LevelSplashScreen.new(self) { self.game_state = GameState::WaitingForPlayer.new(self) }

@@ -8,7 +8,7 @@ class GameState
       @blk = blk
       @game = game
       level = @game.level
-      @message = load_message("level#{level}")
+      @message = load_message(level)
       font_path = MediaManager.font_path('large')
       background_message = level == 0 ? @message : "Level #{level}"
       @level_image = Gosu::Image.from_text(background_message,44,font: font_path)

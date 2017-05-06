@@ -132,6 +132,38 @@ pacer_west_2:
   set: pacer.png
   index: 7
   
+racer_south_1:
+  set: racer.png
+  index: 0
+  
+racer_south_2:
+  set: racer.png
+  index: 1
+  
+racer_north_1:
+  set: racer.png
+  index: 2
+
+racer_north_2:
+  set: racer.png
+  index: 3
+  
+racer_east_1:
+  set: racer.png
+  index: 4
+  
+racer_east_2:
+  set: racer.png
+  index: 5
+    
+racer_west_1:
+  set: racer.png
+  index: 6
+  
+racer_west_2:
+  set: racer.png
+  index: 7
+  
 watcher_south_1:
   set: watcher.png
   index: 0
@@ -162,6 +194,38 @@ watcher_west_1:
   
 watcher_west_2:
   set: watcher.png
+  index: 7
+  
+sentry_south_1:
+  set: sentry.png
+  index: 0
+  
+sentry_south_2:
+  set: sentry.png
+  index: 1
+  
+sentry_north_1:
+  set: sentry.png
+  index: 2
+
+sentry_north_2:
+  set: sentry.png
+  index: 3
+  
+sentry_east_1:
+  set: sentry.png
+  index: 4
+  
+sentry_east_2:
+  set: sentry.png
+  index: 5
+    
+sentry_west_1:
+  set: sentry.png
+  index: 6
+  
+sentry_west_2:
+  set: sentry.png
   index: 7
   
 beam_bullet_north:

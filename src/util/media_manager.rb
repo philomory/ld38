@@ -57,8 +57,22 @@ module MediaManager
       @songs[name] ||= _load_song_named(name)
     end
   
+    def song_for_level(level)
+      case level
+      when  0..5  then "oceans"
+      when  6..10 then "ghost"
+      when 11..15 then "cheese"
+      else "oceans"
+      end
+    end
+    
+    def play_song_for_level(level)
+      name = song_for_level(level)
+      play_music(name) if music? && Gosu::Song.current_song != song(name)        
+    end
+  
     def play_music(name=nil)
-      name ||= _pick_random_song
+      name ||= song_for_level($game.level)
       song(name).play(true)
     end
   
@@ -71,7 +85,7 @@ module MediaManager
     end
     
     def toggle_music
-      Gosu::Song.current_song ? stop_music : play_music
+      Gosu::Song.current_song ? stop_music : play_music(_song_for_level)
     end
   
     private  
