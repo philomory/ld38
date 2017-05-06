@@ -8,3 +8,4 @@ dist/win32/Strangeness
 dist/win32/*.zip
 dist/macos/*.zip
 dist/macos/Strangeness.app
+scratch/
