@@ -12,7 +12,7 @@ class InputManager
       KbDown => :throw_south,
       KbLeft => :throw_west,
       KbRight => :throw_east,
-      KbEscape => :quit,
+      KbEscape => :pause,
       KbR => :restart,
       KbM => :toggle_music,
       KbN => :toggle_sfx
@@ -27,7 +27,7 @@ class InputManager
       throw_south: "Throw Down",
       throw_west: "Throw Left",
       throw_east: "Throw Right",
-      quit: "Quit Game",
+      pause: "Pause Game",
       restart: "Restart Level",
       toggle_music: "Music On/Off",
       toggle_sfx: "SFX On/Off"     

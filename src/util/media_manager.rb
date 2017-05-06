@@ -47,6 +47,10 @@ module MediaManager
     def toggle_sfx
       @mute_sfx = !@mute_sfx
     end
+    
+    def sfx?
+      !@mute_sfx
+    end
   
     def song(name)
       @songs ||= {}
@@ -60,6 +64,10 @@ module MediaManager
   
     def stop_music
       Gosu::Song.current_song&.stop
+    end
+    
+    def music?
+      Gosu::Song.current_song
     end
     
     def toggle_music

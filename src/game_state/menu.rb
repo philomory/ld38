@@ -20,13 +20,13 @@ class GameState
     end
     
     def menu_start_pos
-      300
+      center_y + 25 - (@options.count * 25)
     end
     
     def draw
       #bg_color = (0xEE * (1.0 - fade_portion)).floor * 0x01000000
       @background_image.draw(0,0,11)
-      draw_text(@title,100)
+      draw_text(@title,100,1.5)
       @options.each_with_index do |option,index|
         scale = (index == @position) ? 1.5 : 1
         ypos = menu_start_pos + (75 * index)

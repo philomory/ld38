@@ -12,7 +12,7 @@ class InputManager
       KbS => :south,
       KbA => :west,
       KbD => :east,
-      KbEscape => :quit,
+      KbEscape => :pause,
       KbR => :restart,
       KbM => :toggle_music,
       KbN => :toggle_sfx,
@@ -33,7 +33,7 @@ class InputManager
       west: "Move Left",
       east: "Move Right",
       modifier: "Hold for Throw",
-      quit: "Quit Game",
+      pause: "Pause Game",
       restart: "Restart Level",
       toggle_music: "Music On/Off",
       toggle_sfx: "SFX On/Off"     

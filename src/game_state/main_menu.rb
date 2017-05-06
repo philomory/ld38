@@ -4,7 +4,7 @@ class GameState
       @title = "Strangeness"
       @background_image = MediaManager.image("main_menu")
       add_option("Start Game") { @game.start_game }
-      add_option("Configure Controls") { transition_to(GameState::ConfigMenu.new) }
+      add_option("Options") { transition_to(GameState::ConfigMenu.new) }
       add_option("Quit Game") { exit }
     end
   end

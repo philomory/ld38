@@ -6,6 +6,7 @@ class Game < Gosu::Window
   end
   
   attr_accessor :input_manager #TODO: make static on InputManager class
+  attr_accessor :paused 
   attr_reader :game_state, :world, :player, :enemies, :level, :animation_manager
   def initialize
     super 896, 690, false
@@ -70,6 +71,20 @@ class Game < Gosu::Window
     when :toggle_sfx then MediaManager.toggle_sfx
     else @game_state.handle_input(action)
     end
+  end
+  
+  def pause
+    @paused = true
+    @game_state = GameState::PauseMenu.new
+  end
+  
+  def unpause
+    @paused = false
+    @game_state = GameState::WaitingForPlayer.new
+  end
+  
+  def paused?
+    @paused
   end
   
   def game_state=(state)

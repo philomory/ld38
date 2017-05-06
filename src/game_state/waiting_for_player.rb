@@ -8,6 +8,7 @@ class GameState
         
     def handle_input(action)
       case action
+      when :pause then $game.pause
       when :restart then $game.restart_level
       when :north, :south, :east, :west
         game.player.move(action) { game.game_state = EnemyAction.new(game) }
