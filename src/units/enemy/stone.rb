@@ -20,4 +20,7 @@ class Enemy::Stone < Enemy
     false
   end
   
+  def attacked(*args)
+  end
+  
 end
