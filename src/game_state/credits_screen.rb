@@ -4,12 +4,12 @@ class GameState
     FADE_IN_DURATION = 1000.0
     FADE_OUT_DURATION = 750.0
 
-    def initialize(game)
-      @game = game
-    end
-    
     def fullscreen?
       true
+    end
+  
+    def draw_world?
+      false
     end
   
     def on_enter
@@ -63,7 +63,7 @@ class GameState
     end
 
     def finish
-      exit
+      $game.game_state = GameState::MainMenu.new
     end
     
     def locked?
