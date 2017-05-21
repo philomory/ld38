@@ -102,6 +102,7 @@ class Game < Gosu::Window
   end
   
   def player_died
+    #TODO: Play death animation
     restart_level
   end
   

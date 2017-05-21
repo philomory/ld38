@@ -8,10 +8,11 @@ class GameState
       @blk = blk
       @game = game
       level = @game.level
-      @message = load_message(level)
+      message = load_message(level)
       font_path = MediaManager.font_path('large')
-      background_message = level == 0 ? @message : "Level #{level}"
-      @level_image = Gosu::Image.from_text(background_message,44,font: font_path)
+      @message_image = Gosu::Image.from_text(message, 44, width: 896, font: font_path, retro: true, align: :center)
+      background_message = level == 0 ? message : "Level #{level}"
+      @level_image = Gosu::Image.from_text(background_message,44,font: font_path, retro: true)
       @points = Array.new(50) { random_point }
     end
     
@@ -47,7 +48,7 @@ class GameState
       bg_color = (0xEE * (1.0 - fade_portion)).floor * 0x01000000
       Gosu.draw_rect(0,0,@game.width,@game.height,bg_color,11)
       @points.each {|x,y,c| @level_image.draw_rot(x,y,13,0,0.5,0.5,1,1,color(c)) }
-      MediaManager.font('large').draw_rel(@message,center_x, center_y,14,0.5,0.5,1,1,color)
+      @message_image.draw_rot(center_x, center_y,14,0,0.5,0.5,1,1,color)
     end
     
     def fade_portion
