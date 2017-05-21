@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="34">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="37">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="12" columns="4">
   <image source="../../media/tilesets/objects.png" width="128" height="96"/>
@@ -53,5 +53,7 @@
   <object id="23" name="Key" type="Key" gid="46" x="256" y="32" width="32" height="32"/>
   <object id="24" name="Bush" type="Bush" gid="41" x="352" y="128" width="32" height="32"/>
   <object id="25" name="Bush" type="Bush" gid="41" x="0" y="128" width="32" height="32"/>
+  <object id="35" name="Rock" type="Rock" gid="47" x="96" y="160" width="32" height="32"/>
+  <object id="34" name="Rock" type="Rock" gid="47" x="64" y="160" width="32" height="32"/>
  </objectgroup>
 </map>

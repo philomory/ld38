@@ -53,6 +53,8 @@ class Game < Gosu::Window
 
   def button_down(id)
     binding.pry if id == Gosu::KB_BACKTICK
+    return next_level if id == Gosu::KB_PERIOD
+    return prev_level if id == Gosu::KB_COMMA
     if @game_state.needs_raw_input?
       @game_state.button_down(id)
     else
@@ -123,6 +125,12 @@ class Game < Gosu::Window
     MediaManager.play_sfx('portal')
     @level += 1
     @level < @levels.count ? setup_level : to_be_continued
+  end
+  
+  def prev_level
+    MediaManager.play_sfx('portal')
+    @level -= 1
+    setup_level
   end
   
   def setup_level

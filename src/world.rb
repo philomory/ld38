@@ -33,7 +33,7 @@ class World
     end
     
     tmo = level_data.player
-    @player = Player.new(health:1, weapon_count: tmo.properties['rocks'].to_i || 3)
+    @player = Player.new(health:1, weapon_count: 0) #tmo.properties['rocks'].to_i || 3)
     @player.position = @grid[tmo.x, tmo.y]
      
   end

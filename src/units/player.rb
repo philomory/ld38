@@ -1,7 +1,7 @@
 class Player < Unit
   
   attr_accessor :weapon_count
-  attr_reader :health, :max_health, :weapon
+  attr_reader :health, :max_health, :weapon, :keys
   def initialize(health: 3, weapon_count: 20)
     @weapon_count = weapon_count
     @weapon = Weapon.new("rock")
@@ -70,6 +70,10 @@ class Player < Unit
     @keys += 1
   end
   
+  def gain_rock
+    @weapon_count += 1
+  end
+  
   def lose_key
     raise unless has_key?
     @keys -= 1
@@ -77,6 +81,10 @@ class Player < Unit
   
   def has_key?
     @keys > 0
+  end
+  
+  def has_weapon?
+    @weapon_count > 0
   end
   
   def attacked(enemy)

@@ -32,7 +32,7 @@ class Prop < GameObject
     end
   end
   
-  attr_reader :type, :pushable, :blocks_player, :blocks_enemy, :blocks_bullet
+  attr_reader :type, :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :blocks_boulder
   def initialize(type, properties)
     @type = type.downcase.to_sym
     prototype = PROTOTYPES[@type]
