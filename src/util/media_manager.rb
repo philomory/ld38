@@ -91,7 +91,7 @@ module MediaManager
     private  
     
     def _load_sfx_named(name)
-      fname = _sfx_map[name]
+      fname = _sfx_map[name] || "#{name}.wav"
       path = File.join(MEDIA_ROOT,"sfx",fname)
       Gosu::Sample.new(path)
     end

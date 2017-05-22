@@ -11,7 +11,7 @@ class GameState
       if first_time? && game.enemies.any?
         setup_turn
       elsif game.enemies.none?(&:ready_to_move?)
-        game.game_state = CheckWorldState.new(game)
+        game.game_state = CheckWorldState.new(WaitingForPlayer)
       end
     end
     
@@ -25,7 +25,7 @@ class GameState
 
     def update
       game.enemies.select(&:ready_to_move?).each {|enemy| enemy.make_your_move! }
-      game.game_state = CheckWorldState.new(game) if game.animation_manager.nothing_to_do?
+      game.game_state = CheckWorldState.new(WaitingForPlayer) if game.animation_manager.nothing_to_do?
     end
     
     # def update

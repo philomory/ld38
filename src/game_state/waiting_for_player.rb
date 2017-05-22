@@ -11,12 +11,12 @@ class GameState
       when :pause then $game.pause
       when :restart then $game.restart_level
       when :north, :south, :east, :west
-        game.player.move(action) { game.game_state = EnemyAction.new(game) }
+        game.player.move(action) { game.game_state = CheckWorldState.new(EnemyAction) }
       when /throw_(?<dir>\w+)/
-        game.player.throw_weapon($~[:dir].to_sym) { game.game_state = EnemyAction.new(game) }
+        game.player.throw_weapon($~[:dir].to_sym) { game.game_state = CheckWorldState.new(EnemyAction) }
       when :wait
         if game.waiting_allowed?
-          game.game_state = EnemyAction.new(game)
+          game.game_state = CheckWorldState.new(EnemyAction)
         else
           MediaManager.play_sfx("buzzer")
         end
@@ -25,7 +25,7 @@ class GameState
   end
   
   def next_state
-    EnemyAction.new(game)
+    CheckWorldState.new(EnemyAction)
   end
   
   def animation_duration

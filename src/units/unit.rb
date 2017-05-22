@@ -54,6 +54,7 @@ class Unit < GameObject
   end
   
   def fry
+    MediaManager.play_sfx("fry")
     die
   end
   

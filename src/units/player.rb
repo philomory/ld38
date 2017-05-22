@@ -98,7 +98,11 @@ class Player < Unit
   
   
   def end_turn!
-    $game.game_state = GameState::EnemyAction.new($game)
+    $game.game_state = GameState::CheckWorldState.new(GameState::EnemyAction)
+  end
+  
+  def fry
+    super
   end
   
   def die

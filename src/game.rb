@@ -53,8 +53,8 @@ class Game < Gosu::Window
 
   def button_down(id)
     binding.pry if id == Gosu::KB_BACKTICK
-    return next_level if id == Gosu::KB_PERIOD
-    return prev_level if id == Gosu::KB_COMMA
+    return (@skip_display = true; next_level) if id == Gosu::KB_PERIOD
+    return (@skip_display = true; prev_level) if id == Gosu::KB_COMMA
     if @game_state.needs_raw_input?
       @game_state.button_down(id)
     else
@@ -138,7 +138,12 @@ class Game < Gosu::Window
     MediaManager.play_song_for_level(@level)
     @world = World.new(@levels[@level])
     #self.game_state = GameState::WaitingForPlayer.new(self)
-    self.game_state = GameState::LevelSplashScreen.new(self) { self.game_state = GameState::WaitingForPlayer.new(self) }
+    if @skip_display
+      @skip_display = false
+      self.game_state = GameState::WaitingForPlayer.new(self)
+    else
+      self.game_state = GameState::LevelSplashScreen.new(self) { self.game_state = GameState::WaitingForPlayer.new(self) }
+    end
   end
   
   def to_be_continued
