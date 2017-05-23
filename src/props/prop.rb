@@ -1,21 +1,5 @@
 class Prop < GameObject
   
-  Prototype = Struct.new(:pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :imagename) do
-    DEFAULTS = {pushable: false, blocks_player: true, blocks_enemy: true, blocks_bullet: true }
-    def initialize(**kwargs)
-      kwargs = DEFAULTS.merge(kwargs)
-      args = members.map {|m| kwargs[m] }
-      super(*args)
-    end
-  end
-  
-  PROTOTYPES = {
-    prop: Prototype.new,
-    stone: Prototype.new(pushable: true, imagename: "stone"),
-    bush: Prototype.new(blocks_player: false, imagename: "bush"),
-    rock: Prototype.new(imagename: "rock")
-  }
-  
   self.z_index = 2
   
   SPECIFIC_TYPES = {}
@@ -24,21 +8,23 @@ class Prop < GameObject
     SPECIFIC_TYPES[key] = klass
   end
   
-  def self.new(type, properties)
-    if SPECIFIC_TYPES.has_key?(type) && self == Prop
-      SPECIFIC_TYPES[type].new(type,properties)
+  def self.new(*args)
+    if self == Prop
+      type, properties = args
+      if SPECIFIC_TYPES.has_key?(type)
+        SPECIFIC_TYPES[type].new(properties)
+      else
+        raise "Unknown Prop Type: #{type}"
+      end
     else
       super
     end
   end
   
-  attr_reader :type, :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :blocks_boulder
-  def initialize(type, properties)
-    @type = type.downcase.to_sym
-    prototype = PROTOTYPES[@type]
-    prototype.each_pair do |key, value|
-      instance_variable_set(:"@#{key}", properties[key.to_s] || value )
-    end
+  attr_reader :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :blocks_boulder
+  def initialize(properties)
+    @pushable = false
+    @blocks_player = @blocks_enemy = @blocks_bullet = true
   end
   
   %i{pushable blocks_player blocks_enemy blocks_bullet}.each do |prop|
@@ -61,7 +47,7 @@ class Prop < GameObject
   end
   
   def imagename
-    @imagename || type.to_s.downcase
+    @imagename || self.class.name.downcase
   end
   
   def on_enter(unit)

@@ -24,3 +24,12 @@ However, if you found the secret things in the prior worlds, something good happ
 
 Ok, going to need a grid. Probably going to re-use CellGrid again.
 
+
+
+
+New interactables:
+* Portal - depending on portal offsets, can be used to desync
+* Delay - Enemies get an extra move after you step on this; can be used to desync
+* Doppel - Enemy who mirrors your movement; possibly literal mirror across an axis, possibly rotationally identical to you
+* Seeker - Enemy who tries to move towards the player
+* Respawn - Should enemies that get fried respawn in their start location? Can rock get fried?

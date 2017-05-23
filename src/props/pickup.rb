@@ -1,8 +1,8 @@
 class Pickup < Prop
   
-  def initialize(type,properties)
-    @type = type
-    @pushable = @blocks_player = @blocks_enemy = @bocks_bullet = false
+  def initialize(properties)
+    super
+    @blocks_player = @blocks_enemy = @bocks_bullet = false
   end
 
   def on_enter(unit)
@@ -11,6 +11,9 @@ class Pickup < Prop
     @cell.prop = nil
   end
   
+  # TODO: Re-evaluate; is this intuitive? If not, what benefit does it have for things to work this way?
+  # Is it worth making the rules more complicated for the sake of only _one_ level that uses that complication?
+  # Even if I like that level a lot?
   def passable?(passer)
     passer.is_a?(Enemy::Stone) ? false : super
   end
@@ -19,7 +22,4 @@ class Pickup < Prop
     raise NotImplementedError, "Subclasses must implemenet :pickup!"
   end
     
-  
-
-  
 end

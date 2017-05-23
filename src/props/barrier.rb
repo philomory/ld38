@@ -2,10 +2,9 @@ class Barrier < Prop
   
   register_type("Barrier",self)
   
-  def initialize(type,properties)
-    @type = type
+  def initialize(properties)
+    super
     @group = (properties["group"] || :default).to_sym
-    @pushable = false
   end
   
   def blocks_player?

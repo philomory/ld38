@@ -2,10 +2,9 @@ class Portal < Prop
   
   register_type("Portal",self)
   
-  def initialize(type,properties)
-    @type = type
-    @pushable = @blocks_player = false
-    @blocks_enemy = @blocks_bullet = true
+  def initialize(properties)
+    super
+    @blocks_player = false
   end
   
   def imagename
@@ -15,7 +14,5 @@ class Portal < Prop
   def on_enter(unit)
     $game.next_level if unit.player?
   end
-  
-
   
 end
