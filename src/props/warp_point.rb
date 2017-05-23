@@ -26,9 +26,12 @@ class WarpPoint < Prop
   end
 
   def on_enter(unit)
-    return if @arriving == unit
-    @partner.prepare_for_arrival(unit)
-    unit.position = @partner.cell
+    if @arriving == unit
+      @arriving = nil
+    else
+      @partner.prepare_for_arrival(unit)
+      unit.position = @partner.cell
+    end
   end
   
   def prepare_for_arrival(unit)
