@@ -98,6 +98,14 @@ barrier_1:
 barrier_2:
   set: objects.png
   index: 11
+  
+warp_1:
+  set: objects.png
+  index: 12
+  
+warp_2:
+  set: objects.png
+  index: 13
 
   
 pacer_south_1:

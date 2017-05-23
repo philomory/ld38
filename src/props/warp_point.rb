@@ -1,17 +1,17 @@
 class WarpPoint < Prop
   
-  register_type("WarpPoint",self)
+  register_type("Warp",self)
   
   attr_reader :tag, :partner
   def initialize(properties)
-    raise if properties[:tag].nil?
+    raise if properties['tag'].nil?
     super
     #TODO: Figure out how to handle throwing rocks through warp-points. For now, can't be done.
     @blocks_player = @blocks_enemy = false
-    @tag = properties[:tag]
+    @tag = properties['tag']
   end
   
-  def other=(other)
+  def partner=(other)
     raise "#{self} already has a match!" unless @partner.nil?
     raise "#{other} does not share tag with #{self}" unless @tag == other.tag 
     @partner = other

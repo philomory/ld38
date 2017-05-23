@@ -16,11 +16,15 @@ class World
     level_data = TileMap.new(level)
     @grid = Grid.new(WIDTH,HEIGHT) { |cell| cell.terrain = level_data[cell.x,cell.y] }
     
+    @warps = []
     @props = level_data.props.map do |tmo|
       prop = Prop.new(tmo.type,tmo.properties)
       prop.position = @grid[tmo.x,tmo.y]
       prop
     end
+    
+    warps = @props.select {|prop| prop.is_a? WarpPoint}
+    warps.each {|warp| warp.partner = warps.find {|other| other != warp && other.tag == warp.tag } }
     
     @enemies = level_data.enemies.map do |tmo|
       enemy = Enemy.new(tmo.type,tmo.properties)

@@ -21,7 +21,7 @@ class Prop < GameObject
     end
   end
   
-  attr_reader :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :blocks_boulder
+  attr_reader :pushable, :blocks_player, :blocks_enemy, :blocks_bullet, :blocks_boulder, :cell
   def initialize(properties)
     @pushable = false
     @blocks_player = @blocks_enemy = @blocks_bullet = true
