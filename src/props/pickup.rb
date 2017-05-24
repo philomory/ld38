@@ -2,7 +2,7 @@ class Pickup < Prop
   
   def initialize(properties)
     super
-    @blocks_player = @blocks_enemy = @bocks_bullet = false
+    @blocks_player = @blocks_enemy = @blocks_bullet = false
   end
 
   def on_enter(unit)
