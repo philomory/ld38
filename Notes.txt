@@ -33,3 +33,12 @@ New interactables:
 * Doppel - Enemy who mirrors your movement; possibly literal mirror across an axis, possibly rotationally identical to you
 * Seeker - Enemy who tries to move towards the player
 * Respawn - Should enemies that get fried respawn in their start location? Can rock get fried?
+* Pickup that lets you walk over a gap
+* Pickup that lets you break down a wall
+* Triggered object that explodes when touched by an enemy, stepped on by the player, or has a rock thrown at it. Can chain react, of course
+* Bombs similar to above, but pushable? 
+* Switches that can be triggered by thrown rocks?
+* Conveyor belts?
+* Probably not ice floors, but maybe?
+* Beam and mirror puzzles?
+* Crumbling floors?

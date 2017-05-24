@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="67">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="88">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <image source="../../media/tilesets/objects.png" width="128" height="128"/>
@@ -25,7 +25,7 @@
  </tileset>
  <layer name="Terrain" width="12" height="8">
   <data encoding="base64">
-   JQAAACUAAAAlAAAAJQAAACUAAAAYAAAAJQAAABgAAAAlAAAAJQAAACUAAAAlAAAAJQAAACUAAAAlAAAAJQAAACUAAAAcAAAAJQAAABwAAAAlAAAAJQAAACUAAAAlAAAAIwAAABIAAAAhAAAAIgAAACIAAAAbAAAAJQAAABkAAAAiAAAAIwAAABMAAAAhAAAAFAAAABQAAAATAAAAEwAAABEAAAAgAAAAJQAAACAAAAARAAAAEwAAABMAAAARAAAAFAAAABIAAAATAAAAEwAAABAAAAAUAAAAEwAAABQAAAAUAAAAEQAAABIAAAARAAAADQAAAA4AAAAOAAAADwAAABEAAAAUAAAAEQAAABQAAAAUAAAADQAAAA4AAAAPAAAADQAAAA4AAAAOAAAADwAAABMAAAAYAAAAJQAAABgAAAARAAAADQAAAA4AAAAPAAAADQAAAA4AAAAOAAAADwAAABEAAAAcAAAAJQAAABwAAAARAAAADQAAAA4AAAAPAAAA
+   EQAAABEAAAARAAAAEQAAABEAAAAYAAAAJQAAABgAAAAmAAAAEQAAABEAAAARAAAAJgAAACYAAAARAAAAEQAAABEAAAAcAAAAJQAAABwAAAARAAAAJgAAABEAAAARAAAAEQAAABQAAAAmAAAAEQAAABEAAAAcAAAAJQAAABwAAAARAAAAEQAAACYAAAAUAAAAFAAAABQAAAAUAAAAJgAAACYAAAAcAAAAJgAAABwAAAARAAAAEwAAACYAAAARAAAAFAAAABEAAAATAAAAJgAAABEAAAAcAAAAJgAAABwAAAAmAAAAJgAAACYAAAAmAAAAJgAAACQAAAAmAAAAJgAAABEAAAAcAAAAJQAAABwAAAAmAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAJgAAABMAAAAcAAAAJQAAABwAAAAmAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAJgAAABEAAAAgAAAAJQAAACAAAAAmAAAAEQAAABEAAAARAAAA
   </data>
  </layer>
  <objectgroup name="Enemies"/>
@@ -36,18 +36,94 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Triggers"/>
+ <objectgroup name="Triggers">
+  <object id="84" name="Trigger" type="Trigger" gid="49" x="128" y="256" width="32" height="32"/>
+ </objectgroup>
  <objectgroup name="Props">
   <object id="14" name="Portal" type="Portal" gid="43" x="192" y="32" width="32" height="32"/>
-  <object id="65" name="Warp" type="Warp" gid="53" x="128" y="64" width="32" height="32">
+  <object id="65" name="Warp" type="Warp" gid="53" x="192" y="96" width="32" height="32">
    <properties>
-    <property name="tag" value="default"/>
+    <property name="tag" value="E"/>
    </properties>
   </object>
-  <object id="66" name="Warp" type="Warp" gid="53" x="256" y="64" width="32" height="32">
+  <object id="66" name="Warp" type="Warp" gid="53" x="192" y="192" width="32" height="32">
    <properties>
-    <property name="tag" value="default"/>
+    <property name="tag" value="A"/>
    </properties>
   </object>
+  <object id="67" name="Warp" type="Warp" gid="53" x="320" y="224" width="32" height="32">
+   <properties>
+    <property name="tag" value="A"/>
+   </properties>
+  </object>
+  <object id="68" name="Warp" type="Warp" gid="53" x="32" y="256" width="32" height="32">
+   <properties>
+    <property name="tag" value="E"/>
+   </properties>
+  </object>
+  <object id="69" name="Warp" type="Warp" gid="53" x="0" y="96" width="32" height="32">
+   <properties>
+    <property name="tag" value="H"/>
+   </properties>
+  </object>
+  <object id="71" name="Warp" type="Warp" gid="53" x="0" y="32" width="32" height="32">
+   <properties>
+    <property name="tag" value="C"/>
+   </properties>
+  </object>
+  <object id="72" name="Warp" type="Warp" gid="53" x="128" y="32" width="32" height="32">
+   <properties>
+    <property name="tag" value="D"/>
+   </properties>
+  </object>
+  <object id="73" name="Warp" type="Warp" gid="53" x="256" y="64" width="32" height="32">
+   <properties>
+    <property name="tag" value="F"/>
+   </properties>
+  </object>
+  <object id="74" name="Warp" type="Warp" gid="53" x="288" y="128" width="32" height="32">
+   <properties>
+    <property name="tag" value="G"/>
+   </properties>
+  </object>
+  <object id="76" name="Warp" type="Warp" gid="53" x="288" y="32" width="32" height="32">
+   <properties>
+    <property name="tag" value="C"/>
+   </properties>
+  </object>
+  <object id="77" name="Warp" type="Warp" gid="53" x="128" y="160" width="32" height="32">
+   <properties>
+    <property name="tag" value="G"/>
+   </properties>
+  </object>
+  <object id="78" name="Warp" type="Warp" gid="53" x="64" y="160" width="32" height="32">
+   <properties>
+    <property name="tag" value="B"/>
+   </properties>
+  </object>
+  <object id="79" name="Warp" type="Warp" gid="53" x="288" y="192" width="32" height="32">
+   <properties>
+    <property name="tag" value="B"/>
+   </properties>
+  </object>
+  <object id="80" name="Warp" type="Warp" gid="53" x="352" y="192" width="32" height="32">
+   <properties>
+    <property name="tag" value="F"/>
+   </properties>
+  </object>
+  <object id="81" name="Warp" type="Warp" gid="53" x="352" y="256" width="32" height="32">
+   <properties>
+    <property name="tag" value="H"/>
+   </properties>
+  </object>
+  <object id="82" name="Warp" type="Warp" gid="53" x="288" y="256" width="32" height="32">
+   <properties>
+    <property name="tag" value="D"/>
+   </properties>
+  </object>
+  <object id="83" name="Stone" type="Stone" gid="42" x="128" y="224" width="32" height="32"/>
+  <object id="85" name="Barrier" type="Barrier" gid="51" x="32" y="32" width="32" height="32"/>
+  <object id="87" name="Key" type="Key" gid="46" x="352" y="128" width="32" height="32"/>
+  <object id="86" name="Lock" type="Lock" gid="45" x="32" y="192" width="32" height="32"/>
  </objectgroup>
 </map>
