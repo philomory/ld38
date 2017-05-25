@@ -42,3 +42,5 @@ New interactables:
 * Probably not ice floors, but maybe?
 * Beam and mirror puzzles?
 * Crumbling floors?
+* Triggered devices that shoot stuns or kills out
+* Thrown items that freeze, kill, do nothing but trip switches (but fly farther), etc. Tab to switch, if you have more than one?
