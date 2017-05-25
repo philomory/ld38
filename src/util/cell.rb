@@ -14,10 +14,10 @@ class Cell
   end
   
   def draw
-    @terrain.draw(xpos,ypos)
-    @trigger.draw(xpos,ypos) if trigger
-    @occupant.draw(xpos,ypos) if occupant && !occupant.animating?
-    @prop.draw(xpos,ypos) if prop && !prop.animating?
+    terrain.draw(xpos,ypos)
+    trigger.draw(xpos,ypos) if trigger
+    occupant.draw(xpos,ypos) if occupant && !occupant.animating?
+    prop.draw(xpos,ypos) if prop && !prop.animating?
   end
   
   def xpos
@@ -32,6 +32,14 @@ class Cell
     terrain.passable?(passer) && occupant.nil? && (prop.nil? || prop.passable?(passer))
   end
   
+  def weapon_hit(weapon,dir,remaining_distance)
+    if occupant
+      occupant.attacked(weapon)
+    elsif prop && !prop.passable?(weapon)
+      prop.weapon_hit(weapon,dir,remaining_distance)
+    end
+  end
+
   def blocked?(passer)
     !passable?(passer)
   end

@@ -66,4 +66,7 @@ class Prop < GameObject
     end
   end
   
+  def weapon_hit(weapon,dir,remaining_distance)
+  end
+  
 end

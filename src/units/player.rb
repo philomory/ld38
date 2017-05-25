@@ -25,21 +25,21 @@ class Player < Unit
   
   def throw_weapon(dir)
     @facing = dir
+    bullet = @weapon.bullet
+    
     if weapon_count > 0
       self.weapon_count -= 1
       distance = 0
       target = ([dir] * throw_distance).inject(@cell) do |cell,dir|
         distance += 1 
         next_cell = cell.neighbor_in_direction(dir)
-        break next_cell unless next_cell.passable?(weapon)
+        break next_cell unless next_cell.passable?(bullet)
         next_cell
       end
       
-      bullet = @weapon.bullet
-      
       anim = MovementAnimation.new(bullet,@cell,target,distance*100,false)
       $game.schedule_animation(anim) do
-        target.occupant.attacked(nil) if target.occupant
+        target.weapon_hit(bullet,dir,throw_distance-distance)
         end_turn!
       end
     else

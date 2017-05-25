@@ -6,7 +6,6 @@ class WarpPoint < Prop
   def initialize(properties)
     raise if properties['tag'].nil?
     super
-    #TODO: Figure out how to handle throwing rocks through warp-points. For now, can't be done.
     @blocks_player = @blocks_enemy = false
     @tag = properties['tag']
   end
@@ -38,6 +37,29 @@ class WarpPoint < Prop
     @arriving = unit
   end
   
+  def weapon_hit(weapon,dir,distance_remaining)
+    @partner.send_weapon(weapon,dir,distance_remaining)
+  end
+  
+  def send_weapon(bullet,dir,distance_remaining)
+    if @cell.occupant
+      @cell.occupant.attacked(bullet)
+    else
+      distance = 0
+      target = ([dir] * distance_remaining).inject(@cell) do |cell,dir|
+        distance += 1 
+        next_cell = cell.neighbor_in_direction(dir)
+        break next_cell unless next_cell.passable?(bullet)
+        next_cell
+      end
+    
+      anim = MovementAnimation.new(bullet,@cell,target,distance*100,false)
+
+      $game.schedule_animation(anim) do
+        target.weapon_hit(bullet,dir,distance_remaining-distance)
+      end
+    end
+  end
 
   
 end
