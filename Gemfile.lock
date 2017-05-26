@@ -9,6 +9,7 @@ GEM
     debug_inspector (0.0.2)
     gosu (0.11.3.1)
     method_source (0.8.2)
+    plist (3.3.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -19,6 +20,8 @@ GEM
     require_all (1.4.0)
     safe_yaml (1.0.4)
     slop (3.6.0)
+    version (1.1.1)
+    zip (2.0.2)
 
 PLATFORMS
   ruby
@@ -26,9 +29,12 @@ PLATFORMS
 DEPENDENCIES
   crack
   gosu
+  plist
   pry
   pry-stack_explorer
   require_all
+  version
+  zip
 
 RUBY VERSION
    ruby 2.3.1p112
