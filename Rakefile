@@ -58,29 +58,48 @@ end
 namespace :release do
   namespace :check do
     task :mac do
-      raise if File.exist?("dist/releases/strangeness-macos-#{Version.current}.zip")
+      raise "#{Version.current} already released for MacOS" if File.exist?("dist/releases/strangeness-macos-#{Version.current}.zip")
     end
     
     task :win do
-      raise if File.exist?("dist/releases/strangeness-win32-#{Version.current}.zip")
+      raise "#{Version.current} already released for Windows" if File.exist?("dist/releases/strangeness-win32-#{Version.current}.zip")
     end
   end
   
-  desc "MacOS Release"
-  task :mac => ['check:mac', 'build:mac', 'dist/releases'] do
-    Dir.chdir('dist/macos/build') do
-      sh %[zip -r ../../releases/strangeness-macos-#{Version.current}.zip Strangeness.app]
+  namespace :zip do
+    desc "MacOS Release"
+    task :mac => ['check:mac', 'build:mac', 'dist/releases'] do
+      Dir.chdir('dist/macos/build') do
+        sh %[zip -r ../../releases/strangeness-macos-#{Version.current}.zip Strangeness.app]
+      end
+    end
+  
+    desc "Windows Release"
+    task :win => ['check:win', 'build:win', 'dist/releases'] do
+      Dir.chdir('dist/win32/build') do
+        sh %[zip -r ../../releases/strangeness-win32-#{Version.current}.zip Strangeness]
+      end
     end
   end
   
-  desc "Windows Release"
-  task :win => ['check:win', 'build:win', 'dist/releases'] do
-    Dir.chdir('dist/win32/build') do
-      sh %[zip -r ../../releases/strangeness-win32-#{Version.current}.zip Strangeness]
+  desc "Create all zips"
+  task :zip => ['zip:mac', 'zip:win']
+  
+  namespace :itch do
+    desc "Publish Mac to itch.io"
+    task :mac => 'release:zip:mac' do
+      sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-macos-#{Version.current}.zip philomory/strangeness:macos]
+    end
+    
+    desc "Publish Win to itch.io"
+    task :win => 'release:zip:win' do
+      sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-win32-#{Version.current}.zip philomory/strangeness:win32]
     end
   end
+  
+  task :itch => ['itch:mac','itch:win']
   
 end
 
-
-task :release => ['release:mac', 'release:win']
+desc "Create all zip releases and push to itch.io"
+task :release => 'release:itch'
