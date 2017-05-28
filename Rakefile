@@ -43,7 +43,7 @@ namespace :build do
   
   desc "Windows Build"
   task :win => ['clean:win', 'dist/win32/build/Strangeness', 'dist/win32/parts/ruby.zip'] do
-    Zip::File.foreach('dist/win32/parts/ruby.zip') {|f| f.extract File.join('WIN_BUILD_PATH',f.name) }
+    Zip::File.foreach('dist/win32/parts/ruby.zip') {|f| f.extract File.join(WIN_BUILD_PATH,f.name) }
     cp 'dist/win32/parts/ld38.rb', WIN_BUILD_PATH
     cp 'dist/win32/parts/Strangeness.bat', WIN_BUILD_PATH
     cp_r 'src', WIN_BUILD_PATH
