@@ -1,7 +1,9 @@
 require 'zip'
 require 'version'
 require 'rake/version_task'
-Rake::VersionTask.new
+Rake::VersionTask.new do |task|
+  task.with_hg_tag = true
+end
 
 directory "dist"
 directory "dist/releases"
