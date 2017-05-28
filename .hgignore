@@ -10,4 +10,5 @@ dist/win32/*.zip
 dist/macos/*.zip
 dist/macos/Strangeness.app
 dist/*/build
+dist/releases
 scratch/
