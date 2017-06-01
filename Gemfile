@@ -11,4 +11,5 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'zip'
   gem 'version'
+  gem 'httparty'
 end

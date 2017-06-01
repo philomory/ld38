@@ -23,4 +23,13 @@ class Enemy::Stone < Enemy
   def attacked(*args)
   end
   
+  def position=(target)
+    super
+    if @cell.terrain.collapsing?
+      MediaManager.play_sfx("buzzer")
+      die
+      @cell.terrain = Terrain::FilledHole
+    end
+  end
+  
 end

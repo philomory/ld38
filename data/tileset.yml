@@ -10,6 +10,10 @@ empty:
   set: ground_tiles.png
   index: 37
   
+filled_hole:
+  set: ground_tiles.png
+  index: 40
+  
 unit:
   image: purple_dot.png
   

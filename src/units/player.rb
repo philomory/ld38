@@ -66,6 +66,10 @@ class Player < Unit
     end
   end
   
+  def causes_collapse?
+    true
+  end
+  
   def gain_key
     @keys += 1
   end

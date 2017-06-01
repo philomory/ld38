@@ -1,6 +1,9 @@
 require 'zip'
 require 'version'
 require 'rake/version_task'
+require 'httparty'
+require 'json'
+
 Rake::VersionTask.new do |task|
   task.with_hg_tag = true
 end
@@ -58,11 +61,15 @@ end
 namespace :release do
   namespace :check do
     task :mac do
-      raise "#{Version.current} already released for MacOS" if File.exist?("dist/releases/strangeness-macos-#{Version.current}.zip")
+      released_version = JSON.parse(HTTParty.get("https://itch.io/api/1/x/wharf/latest?target=philomory/strangeness&channel_name=macos").body)
+      p released_version
+      p Version.current
+      raise "#{Version.current} already released for MacOS" if released_version == Version.current
     end
     
     task :win do
-      raise "#{Version.current} already released for Windows" if File.exist?("dist/releases/strangeness-win32-#{Version.current}.zip")
+      released_version = JSON.parse(HTTParty.get("https://itch.io/api/1/x/wharf/latest?target=philomory/strangeness&channel_name=win32").body)
+      raise "#{Version.current} already released for Windows" if released_version == Version.current
     end
   end
   

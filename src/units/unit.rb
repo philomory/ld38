@@ -38,9 +38,11 @@ class Unit < GameObject
     self.class.name.split("::").last.downcase
   end
   
-
-  
   def player?
+    false
+  end
+  
+  def causes_collapse?
     false
   end
   

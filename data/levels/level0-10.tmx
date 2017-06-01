@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="12" height="8" tilewidth="32" tileheight="32" nextobjectid="94">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="41" name="objects" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../../media/tilesets/objects.png" width="128" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="tag" value="bush"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="tag" value="sto"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="57" name="Enemies" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../media/tilesets/pacer.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="65" name="Player" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../media/tilesets/purple_man.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="73" name="watcher" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+  <image source="../../media/tilesets/watcher.png" width="64" height="160"/>
+ </tileset>
+ <layer name="Terrain" width="12" height="8">
+  <data encoding="base64">
+   FAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAnAAAAJwAAACcAAAAnAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAGgAAABoAAAAnAAAAGgAAABoAAAAaAAAAGgAAABoAAAAnAAAAGgAAABoAAAAaAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAEQAAABEAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAA
+  </data>
+ </layer>
+ <objectgroup name="Enemies"/>
+ <objectgroup name="Player">
+  <object id="16" name="Player" type="Player" gid="65" x="192" y="256" width="32" height="32">
+   <properties>
+    <property name="rocks" type="int" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Triggers"/>
+ <objectgroup name="Props">
+  <object id="14" name="Portal" type="Portal" gid="43" x="192" y="32" width="32" height="32"/>
+  <object id="93" name="Stone" type="Stone" gid="42" x="224" y="96" width="32" height="32"/>
+ </objectgroup>
+</map>

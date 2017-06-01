@@ -9,8 +9,17 @@ class Cell
   end
   
   def occupant=(unit)
+    occupant_left(@occupant) if @occupant 
     @occupant = unit
     @prop.on_enter(unit) if @prop && unit
+  end
+  
+  def occupant_left(occupant)
+    terrain_collapse! if terrain.collapsing? && occupant.causes_collapse?
+  end
+  
+  def terrain_collapse!
+    @terrain = Terrain::Empty
   end
   
   def draw

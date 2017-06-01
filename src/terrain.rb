@@ -10,8 +10,10 @@ class Terrain
     
   
   attr_reader :name
-  def initialize(name:, passable: true,bullet_passable: passable,prop_passable: passable)
-    @name, @passable, @bullet_passable, @prop_passable = name, passable, bullet_passable, prop_passable
+  def initialize(name:, passable: true,bullet_passable: passable,prop_passable: passable, collapsing: false)
+    @name = name 
+    @passable, @bullet_passable, @prop_passable = passable, bullet_passable, prop_passable
+    @collapsing = collapsing
     Terrain.register(name,self)
   end
   def imagename
@@ -32,11 +34,18 @@ class Terrain
     end
   end
   
+  def collapsing?
+    !!@collapsing
+  end
+  
   OutOfBounds = new(passable: false, name: "out_of_bounds")
   Dirt = new(name: "dirt")
   Grass = new(name: "grass")
   Wall = new(name: "wall", passable: false)
   Floor = new(name: "floor")
   Empty = new(name: "empty", passable: false, bullet_passable: true)
+  Collapsing = new(name: "collapsing", collapsing: true)
+  BrokenFloor = new(name: "broken_floor", collapsing: true)
+  FilledHole = new(name: "filled_hole")
   
 end
