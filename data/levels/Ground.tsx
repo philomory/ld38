@@ -196,6 +196,11 @@
    <property name="tag" value="collapsing"/>
   </properties>
  </tile>
+ <tile id="39">
+  <properties>
+   <property name="tag" value="broken_floor"/>
+  </properties>
+ </tile>
  <tile id="40">
   <properties>
    <property name="tag" value="filled_hole"/>
