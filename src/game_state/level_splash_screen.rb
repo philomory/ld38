@@ -1,8 +1,9 @@
 class GameState
   class LevelSplashScreen < GameState
 
-    FADE_IN_DURATION = 1000.0
+    FADE_IN_DURATION  = 1000.0
     FADE_OUT_DURATION = 750.0
+    QUICK_FADE_OUT_DURATION = 250.0
 
     def initialize(game,&blk)
       @blk = blk
@@ -14,6 +15,7 @@ class GameState
       background_message = level == 0 ? message : "Level #{level}"
       @level_image = Gosu::Image.from_text(background_message,44,font: font_path, retro: true)
       @points = Array.new(50) { random_point }
+      @fade_out_duration = FADE_OUT_DURATION
     end
     
     
@@ -52,7 +54,7 @@ class GameState
     end
     
     def fade_portion
-      [(fade_out_time / FADE_OUT_DURATION),1.0].min
+      [(fade_out_time / @fade_out_duration),1.0].min
     end
     
     def fade_out_time
@@ -60,7 +62,8 @@ class GameState
     end
 
     def handle_input(action)
-      begin_fade_out if running_time > FADE_IN_DURATION
+      @fade_out_duration = QUICK_FADE_OUT_DURATION
+      begin_fade_out
     end
 
     def begin_fade_out
@@ -68,6 +71,7 @@ class GameState
     end
     
     def update
+      begin_fade_out if running_time > FADE_IN_DURATION + 1000 && @fade_start.nil?
       finish if fade_portion >= 1
     end
 
