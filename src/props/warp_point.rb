@@ -27,9 +27,12 @@ class WarpPoint < Prop
   def on_enter(unit)
     if @arriving == unit
       @arriving = nil
+      undo_via { @cell.instance_variable_set(:@occupant,nil) }
     else
       @partner.prepare_for_arrival(unit)
+      undo_via { @cell.instance_variable_set(:@occupant,nil) }
       unit.position = @partner.cell
+      #undo_via { prepare_for_arrival(unit) }
     end
   end
   

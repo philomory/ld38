@@ -13,9 +13,11 @@ class Cell
   end
   
   def occupant=(unit)
+    old_occupant = @occupant
     occupant_left(@occupant) if @occupant 
     @occupant = unit
     @prop.on_enter(unit) if @prop && unit
+    undo_via { @occupant = old_occupant }
   end
   
   def occupant_left(occupant)

@@ -15,14 +15,8 @@ class Unit < GameObject
     old_cell = @cell
     @cell.occupant = nil if @cell
     @cell = new_cell
+    undo_via { @cell = old_cell }
     @cell.occupant = self if @cell
-    
-    undo_via do
-      @cell.occupant = nil if @cell
-      @cell = old_cell
-      @cell.occupant = self if @cell
-    end
-    
   end
   
   def facing=(f)
