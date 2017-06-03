@@ -1,5 +1,7 @@
 class Barrier < Prop
   
+  self.z_index=2
+  
   register_type("Barrier",self)
   
   def initialize(properties)

@@ -4,13 +4,13 @@ class Unit < GameObject
   end
   
   
-  attr_reader :health
+  attr_reader :health, :cell
   def initialize(health: 1,**kwargs)
     @max_health = @health = health
   end
   
   def position=(new_cell)
-    return false if new_cell && new_cell.blocked?(self)
+    #return false if new_cell && new_cell.blocked?(self)
     #raise new_cell.to_s if new_cell && new_cell.blocked?(self)
     @cell.occupant = nil if @cell
     @cell = new_cell

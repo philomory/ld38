@@ -10,8 +10,8 @@ class Enemy::Pacer < Enemy
   end
   
   def ran_into(cell,direction)
+    @facing = -@facing unless cell.occupant&.player?
     super
-    @facing = -@facing
   end
   
   def imagename

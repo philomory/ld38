@@ -46,6 +46,7 @@ class Enemy < Unit
   
   def attack(player)
     player.attacked(self)
+    self.position = player.cell
   end
   
   def attacked(weapon)
