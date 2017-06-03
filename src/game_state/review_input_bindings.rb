@@ -23,7 +23,7 @@ class GameState
     
     def draw_binding(desc,keys,index)
       font = MediaManager.font('small')
-      ypos = 150 + 30 * index
+      ypos = 150 + 28 * index
       key_str = names_for(keys)
       font.draw_rel("#{desc}:",center_x-80, ypos, 14,1.0,0.5)
       font.draw_rel(key_str,center_x-70,ypos, 14, 0.0, 0.5)
