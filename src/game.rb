@@ -52,12 +52,15 @@ class Game < Gosu::Window
   end
 
   def button_down(id)
-    binding.pry if id == Gosu::KB_BACKTICK
-    return (@skip_display = true; next_level) if id == Gosu::KB_PERIOD
-    return (@skip_display = true; prev_level) if id == Gosu::KB_COMMA
+    if defined?(Pry)
+      binding.pry if id == Gosu::KB_BACKTICK
+      return (@skip_display = true; next_level) if id == Gosu::KB_PERIOD
+      return (@skip_display = true; prev_level) if id == Gosu::KB_COMMA
+    end
     if @game_state.needs_raw_input?
       @game_state.button_down(id)
-    else
+    elsif !@input_processing
+      @input_processing = true
       @input_manager.button_down(id)
     end
   end
@@ -97,6 +100,7 @@ class Game < Gosu::Window
   end
   
   def update
+    @input_processing = false
     @animation_manager.play_if_pending!
     @game_state.update
   end
