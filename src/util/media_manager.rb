@@ -128,8 +128,7 @@ module MediaManager
     end
   
     def _load_image_named(name)
-      data = _mapping[name]
-      data ||= {'image' => name}
+      data = _mapping[name] || {'image' => name}
       if data.has_key?('set')
         _tiles(data['set'])[data['index']]
       elsif data.has_key?('image')

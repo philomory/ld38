@@ -19,6 +19,7 @@ class Cell
   end
   
   def terrain_collapse!
+    MediaManager.play_sfx("crumble")
     @terrain = Terrain::Empty
   end
   
