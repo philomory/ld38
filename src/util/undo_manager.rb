@@ -26,6 +26,7 @@ class UndoManager
   
   def undo_turn!
     @stack.pop.undo!
+    $game.game_state = GameState::WaitingForPlayer.new
   end
   
   def level_start!

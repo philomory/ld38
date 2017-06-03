@@ -106,7 +106,7 @@ class Game < Gosu::Window
   end
   
   def player_died
-    schedule_animation(PlayerDeathAnimation.new) { restart_level }
+    schedule_animation(PlayerDeathAnimation.new) { self.game_state = GameState::PlayerDiedState.new }
   end
   
   def enemy_died(who)
