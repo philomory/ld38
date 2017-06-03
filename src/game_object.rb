@@ -25,4 +25,8 @@ class GameObject
   
   def check_state
   end
+  
+  def undo_via(&blk)
+    UndoManager.undo_via(&blk)
+  end
 end

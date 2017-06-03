@@ -12,9 +12,23 @@ class Unit < GameObject
   def position=(new_cell)
     #return false if new_cell && new_cell.blocked?(self)
     #raise new_cell.to_s if new_cell && new_cell.blocked?(self)
+    old_cell = @cell
     @cell.occupant = nil if @cell
     @cell = new_cell
     @cell.occupant = self if @cell
+    
+    undo_via do
+      @cell.occupant = nil if @cell
+      @cell = old_cell
+      @cell.occupant = self if @cell
+    end
+    
+  end
+  
+  def facing=(f)
+    old_f = @facing
+    @facing = f
+    undo_via { @facing = old_f }
   end
     
   def move(direction,&callback)

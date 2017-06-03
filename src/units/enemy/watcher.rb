@@ -17,6 +17,7 @@ class Enemy::Watcher < Enemy
   
   def rotate
     @facing = ~@facing
+    undo_via {@facing = -~@facing}
   end
   
   def range

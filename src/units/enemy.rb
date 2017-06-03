@@ -35,6 +35,7 @@ class Enemy < Unit
   def die
     @cell.occupant = nil
     $game.enemy_died(self)
+    undo_via { @cell.occupant = self }
   end
   
   def ran_into(cell,direction,&callback)
@@ -50,7 +51,9 @@ class Enemy < Unit
   end
   
   def attacked(weapon)
+    old_stunned = @turns_stunned
     @turns_stunned = 4
+    undo_via { @turns_stunned = old_stunned }
     MediaManager.play_sfx("enemy_stunned")
   end
   
@@ -73,8 +76,11 @@ class Enemy < Unit
   end
   
   def end_turn
+    old_ready = @ready_to_move
+    old_stunned = @turns_stunned
     @ready_to_move = false
     @turns_stunned -= 1 if stunned?
+    undo_via { @ready_to_move = old_ready; @turns_stunned = old_stunned }
   end
   
   def can_push?(direction)

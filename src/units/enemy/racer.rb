@@ -9,10 +9,10 @@ class Enemy::Racer < Enemy
     if can_move?(@facing)
       move(@facing,&blk)
     elsif can_move?(-@facing)
-      @facing = -@facing
+      self.facing = -@facing
       make_your_move(&blk)
     else
-      @facing = -@facing
+      self.facing = -@facing
     end
   end
   
@@ -36,7 +36,7 @@ class Enemy::Racer < Enemy
   
   def ran_into(cell,direction)
     super
-    @facing = -@facing
+    self.facing = -@facing
   end
   
   def imagename

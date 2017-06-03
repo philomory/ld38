@@ -110,3 +110,8 @@ end
 
 desc "Create all zip releases and push to itch.io"
 task :release => 'release:itch'
+
+desc "Check Butler status"
+task :status do
+  sh "butler status philomory/strangeness"
+end

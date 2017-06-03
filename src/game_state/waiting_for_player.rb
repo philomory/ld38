@@ -11,15 +11,20 @@ class GameState
       when :pause then $game.pause
       when :restart then $game.restart_level
       when :north, :south, :east, :west
+        UndoManager.start_turn!
         game.player.move(action) { game.game_state = CheckWorldState.new(EnemyAction) }
       when /throw_(?<dir>\w+)/
+        UndoManager.start_turn!
         game.player.throw_weapon($~[:dir].to_sym) { game.game_state = CheckWorldState.new(EnemyAction) }
       when :wait
         if game.waiting_allowed?
+          UndoManager.start_turn!
           game.game_state = CheckWorldState.new(EnemyAction)
         else
           MediaManager.play_sfx("buzzer")
         end
+      when :undo
+        UndoManager.undo_turn!
       end
     end
   end

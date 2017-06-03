@@ -19,8 +19,10 @@ class Player < Unit
   end
   
   def move(dir)
+    old_facing = @facing
     @facing = dir
     super
+    undo_via { @facing = old_facing }
   end
   
   def throw_weapon(dir)
@@ -29,6 +31,7 @@ class Player < Unit
     
     if weapon_count > 0
       self.weapon_count -= 1
+      undo_via { @weapon_count += 1 }
       distance = 0
       target = ([dir] * throw_distance).inject(@cell) do |cell,dir|
         distance += 1 
@@ -72,15 +75,18 @@ class Player < Unit
   
   def gain_key
     @keys += 1
+    undo_via { @keys -= 1 }
   end
   
   def gain_rock
     @weapon_count += 1
+    undo_via { @weapon_count -= 1 }
   end
   
   def lose_key
     raise unless has_key?
     @keys -= 1
+    undo_via { @keys += 1}
   end
   
   def has_key?

@@ -10,7 +10,7 @@ class Enemy::Pacer < Enemy
   end
   
   def ran_into(cell,direction)
-    @facing = -@facing unless cell.occupant&.player?
+    self.facing = -@facing unless cell.occupant&.player?
     super
   end
   

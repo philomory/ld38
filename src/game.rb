@@ -140,6 +140,7 @@ class Game < Gosu::Window
   def setup_level
     MediaManager.play_song_for_level(@level)
     @world = World.new(@levels[@level])
+    UndoManager.level_start!
     #self.game_state = GameState::WaitingForPlayer.new(self)
     if @skip_display
       @skip_display = false

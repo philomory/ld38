@@ -17,6 +17,7 @@ class Lock < Prop
     MediaManager.play_sfx("unlock")
     @cell.terrain = Terrain::Floor
     @cell.prop = nil
+    undo_via { @cell.prop = self }
   end
   
 

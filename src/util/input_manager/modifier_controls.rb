@@ -13,7 +13,8 @@ class InputManager
       KbA => :west,
       KbD => :east,
       KbEscape => :pause,
-      KbR => :restart
+      KbR => :restart,
+      KbU => :undo
     }.freeze
   
     MODIFIERS = [KbLeftShift, KbRightShift].freeze
@@ -32,7 +33,8 @@ class InputManager
       east: "Move Right",
       modifier: "Hold for Throw",
       pause: "Pause Game",
-      restart: "Restart Level"
+      restart: "Restart Level",
+      undo: "Undo Move"
     }.freeze
 
     attr_reader :queued_input

@@ -1,7 +1,11 @@
 class Cell
   attr_reader :x, :y
-  attr_accessor :terrain, :prop, :trigger
-  attr_reader :occupant
+  attr_accessor :prop, :trigger
+  attr_reader :occupant, :terrain
+  
+  def undo_via(&blk)
+    UndoManager.undo_via(&blk)
+  end
   
   def initialize(x,y,grid)
     @x, @y, @grid = x, y, grid
@@ -20,7 +24,13 @@ class Cell
   
   def terrain_collapse!
     MediaManager.play_sfx("crumble")
-    @terrain = Terrain::Empty
+    self.terrain = Terrain::Empty
+  end
+  
+  def terrain=(ter)
+    old_ter = @terrain
+    @terrain = ter
+    undo_via { @terrain = old_ter }
   end
   
   def draw

@@ -9,6 +9,7 @@ class Pickup < Prop
     return unless unit.player?
     pickup!
     @cell.prop = nil
+    undo_via { @cell.prop = self }
   end
   
   # TODO: Re-evaluate; is this intuitive? If not, what benefit does it have for things to work this way?
