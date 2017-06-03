@@ -37,6 +37,7 @@ class WarpPoint < Prop
   end
   
   def prepare_for_arrival(unit)
+    (unit.die; @cell.occupant.die) if @cell.occupant 
     @arriving = unit
   end
   
