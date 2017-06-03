@@ -61,7 +61,8 @@ module MediaManager
       case level
       when  0..5  then "oceans"
       when  6..10 then "ghost"
-      when 11..20 then "cheese" #TODO: Make fourth song
+      when 11..15 then "cheese"
+      when 16..20 then "matrix"
       else "oceans"
       end
     end
