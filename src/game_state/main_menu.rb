@@ -12,5 +12,10 @@ class GameState
     def on_menu_button
       exit
     end
+    
+    def draw
+      super
+      MediaManager.image("menu_instructions.png").draw_rot($game.width/2,$game.height-50,14,0.5,0.5)
+    end
   end
 end
