@@ -14,7 +14,8 @@ class InputManager
       KbRight => :throw_east,
       KbEscape => :pause,
       KbR => :restart,
-      KbU => :undo
+      KbU => :undo,
+      KbZ => :undo
     }.freeze
     
     BIND_LIST = {

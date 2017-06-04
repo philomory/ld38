@@ -14,6 +14,7 @@ class InputManager
       KbD => :east,
       KbEscape => :pause,
       KbR => :restart,
+      KbZ => :undo,
       KbU => :undo
     }.freeze
   
