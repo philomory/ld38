@@ -13,7 +13,8 @@ directory "dist/releases"
 
 directory "dist/macos"
 directory "dist/macos/build"
-RESOURCES_PATH = 'dist/macos/build/Strangeness.app/Contents/Resources/'
+MAC_BUILD_PATH = 'dist/macos/build'
+RESOURCES_PATH = File.join(MAC_BUILD_PATH,'Strangeness.app/Contents/Resources/')
 
 directory 'dist/win32'
 directory 'dist/win32/build'
@@ -23,11 +24,11 @@ WIN_BUILD_PATH = 'dist/win32/build/Strangeness'
 namespace :clean do
 
   task :mac do
-    rm_r 'dist/macos/build' if File.exists?('dist/macos/build')
+    rm_r MAC_BUILD_PATH if File.exists?('dist/macos/build')
   end
   
   task :win do
-    rm_r 'dist/win32/build' if File.exists?('dist/win32/build')
+    rm_r WIN_BUILD_PATH if File.exists?('dist/win32/build')
   end
   
 end
@@ -44,6 +45,8 @@ namespace :build do
     cp_r 'media', RESOURCES_PATH
     sh %[plutil -replace CFBundleShortVersionString -string "#{Version.current}" dist/macos/build/Strangeness.app/Contents/Info.plist ]
     sh %[plutil -replace CFBundleVersion -string "#{Version.current}.#{Time.now.to_i}" dist/macos/build/Strangeness.app/Contents/Info.plist ]
+    cp 'LICENSE', File.join(MAC_BUILD_PATH,"LICENSE.txt")
+    cp 'README.md', File.join(MAC_BUILD_PATH,"README.txt")
   end
   
   desc "Windows Build"
@@ -54,6 +57,8 @@ namespace :build do
     cp_r 'src', WIN_BUILD_PATH
     cp_r 'data', WIN_BUILD_PATH
     cp_r 'media', WIN_BUILD_PATH
+    cp 'LICENSE', File.join(WIN_BUILD_PATH,"LICENSE.txt")
+    cp 'README.md', File.join(WIN_BUILD_PATH,"README.txt")
   end
 end
 
@@ -77,7 +82,7 @@ namespace :release do
     desc "MacOS Release"
     task :mac => ['check:mac', 'build:mac', 'dist/releases'] do
       Dir.chdir('dist/macos/build') do
-        sh %[zip -r ../../releases/strangeness-macos-#{Version.current}.zip Strangeness.app]
+        sh %[zip -r ../../releases/strangeness-macos-#{Version.current}.zip *]
       end
     end
   
@@ -95,12 +100,16 @@ namespace :release do
   namespace :itch do
     desc "Publish Mac to itch.io"
     task :mac => 'release:zip:mac' do
-      sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-macos-#{Version.current}.zip philomory/strangeness:macos]
+      cp 'dist/macos/.itch.toml', MAC_BUILD_PATH
+      #sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-macos-#{Version.current}.zip philomory/strangeness:macos]
+      sh %[butler push --userversion-file=VERSION --fix-permissions #{MAC_BUILD_PATH} philomory/strangeness:macos]
     end
     
     desc "Publish Win to itch.io"
     task :win => 'release:zip:win' do
-      sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-win32-#{Version.current}.zip philomory/strangeness:win32]
+      cp 'dist/win32/.itch.toml', WIN_BUILD_PATH
+      #sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-win32-#{Version.current}.zip philomory/strangeness:win32]
+      sh %[butler push --userversion-file=VERSION --fix-permissions #{WIN_BUILD_PATH} philomory/strangeness:win32]
     end
   end
   

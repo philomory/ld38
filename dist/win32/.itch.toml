@@ -1,0 +1,4 @@
+[[actions]]
+name = "play"
+path = "Strangeness.bat"
+sandbox = true
