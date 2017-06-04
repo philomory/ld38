@@ -21,6 +21,9 @@ directory 'dist/win32/build'
 directory 'dist/win32/build/Strangeness'
 WIN_BUILD_PATH = 'dist/win32/build/Strangeness'
 
+directory 'dist/source/build/Strangeness'
+SRC_BUILD_PATH = 'dist/source/build/Strangeness'
+
 namespace :clean do
 
   task :mac do
@@ -31,9 +34,13 @@ namespace :clean do
     rm_r WIN_BUILD_PATH if File.exists?('dist/win32/build')
   end
   
+  task :src do
+    rm_r SRC_BUILD_PATH if File.exists?('dist/source/build')
+  end
+  
 end
 
-task :clean => ['clean:mac', 'clean:win']
+task :clean => ['clean:mac', 'clean:win', 'clean:src']
 
 
 namespace :build do
@@ -60,6 +67,19 @@ namespace :build do
     cp 'LICENSE', File.join(WIN_BUILD_PATH,"LICENSE.txt")
     cp 'README.md', File.join(WIN_BUILD_PATH,"README.txt")
   end
+  
+  desc "Source Collection"
+  task :src => ['clean:src', 'dist/source/build/Strangeness'] do
+    cp_r 'src', SRC_BUILD_PATH
+    cp_r 'data', SRC_BUILD_PATH
+    cp_r 'media', SRC_BUILD_PATH
+    cp 'ld38.rb', SRC_BUILD_PATH
+    cp 'LICENSE', SRC_BUILD_PATH
+    cp 'README.md', SRC_BUILD_PATH
+    cp 'Gemfile', SRC_BUILD_PATH
+    cp 'Gemfile.lock', SRC_BUILD_PATH
+    cp 'VERSION', SRC_BUILD_PATH  
+  end
 end
 
 
@@ -67,8 +87,6 @@ namespace :release do
   namespace :check do
     task :mac do
       released_version = JSON.parse(HTTParty.get("https://itch.io/api/1/x/wharf/latest?target=philomory/strangeness&channel_name=macos").body)
-      p released_version
-      p Version.current
       raise "#{Version.current} already released for MacOS" if released_version == Version.current
     end
     
@@ -76,6 +94,12 @@ namespace :release do
       released_version = JSON.parse(HTTParty.get("https://itch.io/api/1/x/wharf/latest?target=philomory/strangeness&channel_name=win32").body)
       raise "#{Version.current} already released for Windows" if released_version == Version.current
     end
+    
+    task :src do
+      released_version = JSON.parse(HTTParty.get("https://itch.io/api/1/x/wharf/latest?target=philomory/strangeness&channel_name=source").body)
+      raise "#{Version.current} already released as source" if released_version == Version.current
+    end
+      
   end
   
   namespace :zip do
@@ -91,29 +115,35 @@ namespace :release do
       Dir.chdir('dist/win32/build') do
         sh %[zip -r ../../releases/strangeness-win32-#{Version.current}.zip Strangeness]
       end
-    end
+    end    
   end
   
   desc "Create all zips"
   task :zip => ['zip:mac', 'zip:win']
   
   namespace :itch do
-    desc "Publish Mac to itch.io"
+    desc "Publish MacOS to itch.io"
     task :mac => 'release:zip:mac' do
       cp 'dist/macos/.itch.toml', MAC_BUILD_PATH
       #sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-macos-#{Version.current}.zip philomory/strangeness:macos]
       sh %[butler push --userversion-file=VERSION --fix-permissions #{MAC_BUILD_PATH} philomory/strangeness:macos]
     end
     
-    desc "Publish Win to itch.io"
+    desc "Publish Win32 to itch.io"
     task :win => 'release:zip:win' do
       cp 'dist/win32/.itch.toml', WIN_BUILD_PATH
       #sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-win32-#{Version.current}.zip philomory/strangeness:win32]
       sh %[butler push --userversion-file=VERSION --fix-permissions #{WIN_BUILD_PATH} philomory/strangeness:win32]
     end
+    
+    desc "Publish Source to itch.io"
+    task :src => ['check:src','build:src'] do
+      #sh %[butler push --userversion-file=VERSION --fix-permissions dist/releases/strangeness-win32-#{Version.current}.zip philomory/strangeness:win32]
+      sh %[butler push --userversion-file=VERSION #{SRC_BUILD_PATH} philomory/strangeness:source]
+    end
   end
   
-  task :itch => ['itch:mac','itch:win']
+  task :itch => ['itch:mac','itch:win', 'itch:src']
   
 end
 

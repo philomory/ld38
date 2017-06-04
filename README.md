@@ -13,6 +13,7 @@ Currently features:
 The original version of Strangeness was developed in 72 hours for Ludum Dare 38 - A Small World. This version is substantially improved from the Jam version.
 
 For more information, see [the game's homepage](https://philomory.itch.io/strangeness) on [itch.io](http://itch,io/)
+For the source code to the game, see [the game's repository](https://bitbucket.org/philomory/ld38/) on [BitBucket](http://bitbucket.org)
 
 ## Running the Game
 To run the game from source, you'll need to have [Ruby 2.3.x](http://ruby-lang.org) installed. You'll also need the gem [bundler](http://bundler.io).
@@ -54,4 +55,4 @@ The following tools were used to create this game:
 * Fonts: [Alagard](http://pix3m.deviantart.com/art/Bitmap-font-Alagard-381110713) and [Romulus](http://pix3m.deviantart.com/art/Bitmap-font-Romulus-380739406) by Pix3M
 
 ## License
-This game is released under the MIT license. See License.txt for more information.
+This game is released under the MIT license. See the LICENSE file for more information.
