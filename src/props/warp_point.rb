@@ -29,16 +29,23 @@ class WarpPoint < Prop
       @arriving = nil
       undo_via { @cell.instance_variable_set(:@occupant,nil) }
     else
-      @partner.prepare_for_arrival(unit)
-      undo_via { @cell.instance_variable_set(:@occupant,nil) }
-      unit.position = @partner.cell
-      #undo_via { prepare_for_arrival(unit) }
+      if @partner.prepare_for_arrival(unit)
+        undo_via { @cell.instance_variable_set(:@occupant,nil) }
+        unit.position = @partner.cell
+        #undo_via { prepare_for_arrival(unit) }
+      end
     end
   end
   
   def prepare_for_arrival(unit)
-    (unit.die; @cell.occupant.die) if @cell.occupant 
-    @arriving = unit
+    if @cell.occupant 
+      player = [unit,@cell.occupant].select(&:player?).first
+      player&.die
+      return player
+    else
+      @arriving = unit
+      return true
+    end
   end
   
   def weapon_hit(weapon,dir,distance_remaining)
