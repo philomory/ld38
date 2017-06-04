@@ -61,6 +61,7 @@ class Player < Unit
         die
       end
     else
+      UndoManager.null_turn!
       #super
     end
   end

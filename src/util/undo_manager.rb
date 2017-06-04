@@ -33,6 +33,10 @@ class UndoManager
     @stack = [Turn.new]
   end
 
+  def null_turn!
+    @stack.pop
+  end
+  
   
   self.instance_methods(false).each do |method|
     define_singleton_method(method) do |*args,&blk|
