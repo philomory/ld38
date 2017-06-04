@@ -46,6 +46,8 @@ class Player < Unit
         end_turn!
       end
     else
+      UndoManager.null_turn!
+      MediaManager.play_sfx("buzzer")
       #TODO: Display message about lacking weapons
     end
   end
