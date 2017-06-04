@@ -10,7 +10,7 @@ class GameState
       super
       @locked = true
       font_path = MediaManager.font_path('large')
-      message1 = "Undo: U"
+      message1 = "Undo: Z"
       message2 = "Restart: R"
       @death_message = DEATH_MESSAGES.sample
       @points = Array.new(50) { random_point }
