@@ -54,7 +54,12 @@ class Player < Unit
     if cell.occupant&.can_push?(direction)
       push(cell,direction,&callback)
     elsif cell.occupant&.deadly?
-      die
+      anim = MovementAnimation.new(self,@cell,cell,$game.animation_duration)
+      $game.schedule_animation(anim) do
+        self.position = nil
+        MediaManager.play_sfx("player_hurt")
+        die
+      end
     else
       #super
     end
