@@ -26,7 +26,7 @@ class Enemy::Stone < Enemy
   def position=(target)
     super
     if @cell.terrain.collapsing?
-      MediaManager.play_sfx("buzzer")
+      MediaManager.play_sfx("rock_in_hole")
       die
       @cell.terrain = Terrain::FilledHole
     end
