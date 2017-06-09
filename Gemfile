@@ -9,6 +9,7 @@ gem "crack"
 group :development do
   gem 'pry'
   gem 'pry-stack_explorer'
+  gem 'pry-byebug'
   gem 'zip'
   gem 'version'
   gem 'httparty'
