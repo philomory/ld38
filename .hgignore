@@ -12,3 +12,4 @@ dist/macos/Strangeness.app
 dist/*/build
 dist/releases
 scratch/
+settings.yml

@@ -1,7 +1,7 @@
 class InputManager
   class ModifierControls < ControlType
 
-    InputManager.register(:modifier, self)
+    register :modifier
     
     DEFAULT_BINDINGS = {
       KbUp => :north,
@@ -40,7 +40,10 @@ class InputManager
 
     attr_reader :queued_input
     def setup_bindings
-      restore_default_bindings
+      settings = Settings[:input][:bindings][:modifier]
+      @input_bindings = settings[:input_bindings]
+      @modified_bindings = settings[:modified_bindings]
+      @modifiers = settings[:modifiers]
     end
     
     def restore_default_bindings
@@ -52,6 +55,14 @@ class InputManager
     def bindings=(bindings)
       @modifiers = [bindings.delete(:modifier)]
       @input_bindings = bindings.invert
+    end
+    
+    def settings_dump
+      {
+        input_bindings: @input_bindings.dup,
+        modified_bindings: @modified_bindings.dup,
+        modifiers: @modifiers.dup
+      }
     end
     
     def bind_list
@@ -73,6 +84,14 @@ class InputManager
   
     def modifier_down?
       @modifiers.any? {|key| $game.button_down?(key) }
+    end
+    
+    def self.default_bindings
+      {
+        input_bindings: DEFAULT_BINDINGS,
+        modifiers: MODIFIERS,
+        modified_bindings: MODIFIED_BINDINGS
+      }
     end
     
   end

@@ -12,6 +12,8 @@ class Game < Gosu::Window
     super 896, 690, false
     
     $game = self
+    
+    Settings.load
 
     @input_manager = InputManager
     @animation_manager = AnimationManager.new(self)

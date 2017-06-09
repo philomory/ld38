@@ -1,7 +1,7 @@
 class InputManager
   class MenuControls < ControlType
 
-    InputManager.register(:menu, self)
+    register :menu
     
     DEFAULT_BINDINGS = {
       KbUp => :north,

@@ -12,6 +12,7 @@ class InputManager
   
   def self.input_style=(key)
     @current_manager = controls(key).new
+    Settings.set_key_path(:input, :input_style, key)
   end
   
   def self.current_manager
@@ -42,6 +43,21 @@ class InputManager
 
   def self.restore_default_bindings
     current_manager.restore_default_bindings
+  end
+  
+  def self.save_bindings
+    current_manager.save_bindings
+  end
+  
+  def self.defaults
+    {
+      input_style: :modifier,
+      bindings: METHODS.reject {|k,v| k == :menu }.map {|key,klass| [key, klass.default_bindings]}.to_h
+    }
+  end
+  
+  def self.load_from_settings
+    self.input_style = Settings[:input][:input_style]
   end
 
 end

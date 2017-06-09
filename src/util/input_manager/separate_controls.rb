@@ -1,7 +1,7 @@
 class InputManager
   class SeparateControls < ControlType
 
-    InputManager.register(:separate, self)
+    register :separate
 
     DEFAULT_BINDINGS = {
       KbW => :north,
@@ -32,8 +32,16 @@ class InputManager
       undo: "Undo Move"
     }.freeze
     
+    def self.default_bindings
+      DEFAULT_BINDINGS
+    end
+    
     def setup_bindings
-      restore_default_bindings
+      @input_bindings = Settings[:input][:bindings][:separate]
+    end
+    
+    def settings_dump
+      @input_bindings.dup
     end
     
     def restore_default_bindings
@@ -57,6 +65,5 @@ class InputManager
     def action_for_button_id(id)
       @input_bindings[id]
     end
-    
   end
 end
