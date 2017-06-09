@@ -9,6 +9,7 @@ class GameState
     def initialize(*args)
       super
       @locked = true
+
       font_path = MediaManager.font_path('large')
       message1 = "Undo: Z"
       message2 = "Restart: R"
@@ -18,6 +19,8 @@ class GameState
       @message1 = Gosu::Image.from_text(message1, 44, font: font_path, retro: true)
       @message2 = Gosu::Image.from_text(message2, 44, font: font_path, retro: true)
     end
+    
+
     
     def random_point
       x = rand(0..@game.width)
@@ -59,6 +62,7 @@ class GameState
     end
     
     def on_enter
+      InputManager.clear_queue!
       @start_time = Gosu.milliseconds
     end
   

@@ -11,5 +11,9 @@ class InputManager
     def queue_input(action)
       @queued_input.push(action) if @queued_input.empty?
     end
+    
+    def clear_queue!
+      @queued_input.clear
+    end
   end
 end
