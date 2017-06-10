@@ -41,15 +41,15 @@ module MediaManager
     end
     
     def play_sfx(name)
-      sfx(name).play(0.5) unless @mute_sfx
+      sfx(name).play(0.5) unless Settings[:sfx]
     end
     
     def toggle_sfx
-      @mute_sfx = !@mute_sfx
+      Settings.set_key_path(:sfx, !Settings[:sfx])
     end
     
     def sfx?
-      !@mute_sfx
+      !Settings[:mute_sfx]
     end
   
     def song(name)
@@ -82,11 +82,12 @@ module MediaManager
     end
     
     def music?
-      Gosu::Song.current_song
+      Settings[:music]
     end
     
     def toggle_music
-      Gosu::Song.current_song ? stop_music : play_music
+      Settings.set_key_path(:music, !Settings[:music])
+      Settings[:music] ? plau_music : stop_music
     end
   
     private  

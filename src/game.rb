@@ -129,6 +129,7 @@ class Game < Gosu::Window
   
   def next_level
     MediaManager.play_sfx('portal')
+    Settings[:max_completed_level] = [@level,Settings[:max_completed_level]].max
     @level += 1
     @level < @levels.count ? setup_level : to_be_continued
   end
