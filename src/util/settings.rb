@@ -41,7 +41,8 @@ module Settings
   
   def set_key_path(*path_and_value)
     *init, last, value = *path_and_value
-    SETTINGS.dig(*init)[last] = value
+    parent = init.any? ? SETTINGS.dig(*init) : SETTINGS
+    parent[last] = value
     save
   end
       

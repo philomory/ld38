@@ -49,7 +49,7 @@ module MediaManager
     end
     
     def sfx?
-      !Settings[:mute_sfx]
+      !Settings[:sfx]
     end
   
     def song(name)
@@ -87,7 +87,7 @@ module MediaManager
     
     def toggle_music
       Settings.set_key_path(:music, !Settings[:music])
-      Settings[:music] ? plau_music : stop_music
+      Settings[:music] ? play_music : stop_music
     end
   
     private  
