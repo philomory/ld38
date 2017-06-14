@@ -16,7 +16,7 @@ class GameState
     end
     
     def add_option(text,&blk)
-      @options << {text: text, action: blk }
+      @options << SimpleOption.new(text,blk)
     end
     
     def menu_start_pos
@@ -30,8 +30,7 @@ class GameState
       @options.each_with_index do |option,index|
         scale = (index == @position) ? 1.5 : 1
         ypos = menu_start_pos + (75 * index)
-        text = option[:text].respond_to?(:call) ? option[:text].call : option[:text]
-        draw_text(text,ypos,scale)
+        draw_text(option.text,ypos,scale)
       end
     end
     
@@ -39,6 +38,8 @@ class GameState
       case action
       when :south, :throw_south then @position += 1
       when :north, :throw_north then @position -= 1
+      when :east, :throw_east then inc
+      when :west, :throw_west then dec
       when :accept then trigger_selected
       when :pause then on_menu_button
       end
@@ -51,15 +52,25 @@ class GameState
     
     def back
     end
+    
+    def inc
+      
+    end
+    
+    def dec
+    end
       
     def transition_to(state)
       @game.game_state = GameState::FadeTransition.new(self,state)
     end
       
-    def trigger_selected
-      @options[@position][:action].call
+    def selected_option
+      @options[@position]
     end
-    
+      
+    def trigger_selected
+      selected_option.activate!
+    end
     
     def draw_text(msg,ypos,scale = 1)
       MediaManager.font('large').draw_rel(msg,center_x, ypos, 14,0.5,0.5,scale,scale)
