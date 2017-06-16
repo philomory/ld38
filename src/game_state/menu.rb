@@ -19,6 +19,10 @@ class GameState
       @options << SimpleOption.new(text,blk)
     end
     
+    def add_slider(text,min,cur,max,&blk)
+      @options << SliderOption.new(text,min,cur,max,blk)
+    end
+    
     def menu_start_pos
       center_y + 25 - (@options.count * 25)
     end
@@ -38,8 +42,8 @@ class GameState
       case action
       when :south, :throw_south then @position += 1
       when :north, :throw_north then @position -= 1
-      when :east, :throw_east then inc
-      when :west, :throw_west then dec
+      when :east, :throw_east then selected_option.incr!
+      when :west, :throw_west then selected_option.decr!
       when :accept then trigger_selected
       when :pause then on_menu_button
       end

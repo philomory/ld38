@@ -28,8 +28,8 @@ class Game < Gosu::Window
     MediaManager.play_music
   end
   
-  def start_game
-    @level = 0
+  def start_game(level=Settings[:max_level])
+    @level = level
     setup_level
   end
 
@@ -129,7 +129,6 @@ class Game < Gosu::Window
   
   def next_level
     MediaManager.play_sfx('portal')
-    Settings[:max_completed_level] = [@level,Settings[:max_completed_level]].max
     @level += 1
     @level < @levels.count ? setup_level : to_be_continued
   end
@@ -141,6 +140,7 @@ class Game < Gosu::Window
   end
   
   def setup_level
+    Settings[:max_level] = [@level,Settings[:max_level]].max
     MediaManager.play_song_for_level(@level)
     @world = World.new(@levels[@level])
     UndoManager.level_start!

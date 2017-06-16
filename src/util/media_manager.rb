@@ -41,15 +41,16 @@ module MediaManager
     end
     
     def play_sfx(name)
-      sfx(name).play(0.5) unless Settings[:sfx]
+      sfx(name).play(Settings[:sfx]/10.0) if sfx?
     end
     
-    def toggle_sfx
-      Settings.set_key_path(:sfx, !Settings[:sfx])
+    def sfx_volume=(vol)
+      Settings[:sfx] = vol
+      play_sfx('pickup_key')
     end
     
     def sfx?
-      !Settings[:sfx]
+      Settings[:sfx] > 0
     end
   
     def song(name)
@@ -74,20 +75,23 @@ module MediaManager
   
     def play_music(name=nil)
       name ||= song_for_level($game.level)
-      song(name).play(true)
-    end
-  
-    def stop_music
-      Gosu::Song.current_song&.stop
+      song = song(name)
+      song.volume = Settings[:music] / 10.0
+      song.play(true)
     end
     
+    def music_volume=(vol)
+      Gosu::Song.current_song&.volume = (vol / 10.0)
+      Settings[:music] = vol
+    end
+      
     def music?
-      Settings[:music]
+      Settings[:music] > 0
     end
     
     def toggle_music
-      Settings.set_key_path(:music, !Settings[:music])
-      Settings[:music] ? play_music : stop_music
+      #Settings.set_key_path(:music, !Settings[:music])
+      #Settings[:music] ? play_music : stop_music
     end
   
     private  

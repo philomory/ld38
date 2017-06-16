@@ -1,8 +1,8 @@
 module Settings
   DEFAULTS = { 
-    max_completed_level: 0,
-    music: true,
-    sfx: true,
+    max_level: 0,
+    music: 10,
+    sfx: 5,
     fullscreen: false,
     input: InputManager.defaults
   }.freeze
@@ -36,6 +36,7 @@ module Settings
   def []=(key,value)
     if value != SETTINGS[key]
       SETTINGS[key] = value
+      save
     end
   end
   
