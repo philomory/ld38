@@ -9,7 +9,7 @@ class Game < Gosu::Window
   attr_accessor :paused 
   attr_reader :game_state, :world, :player, :enemies, :level, :animation_manager
   def initialize
-    super 896, 690, false
+    super 896, 690, Settings['fullscreen']
     
     $game = self
     
@@ -27,6 +27,12 @@ class Game < Gosu::Window
 
     MediaManager.play_music
   end
+  
+  def toggle_fullscreen!
+    Settings['fullscreen'] = !Settings['fullscreen']
+    self.fullscreen = Settings['fullscreen']
+  end
+    
   
   def start_game(level=Settings[:max_level])
     @level = level
