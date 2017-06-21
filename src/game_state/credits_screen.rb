@@ -32,9 +32,9 @@ class GameState
       bg_color = (0xEE * (1.0 - fade_portion)).floor * 0x01000000
       MediaManager.image("credits").draw(0,0,11)
       draw_text("Programming, Art, Audio and Design",200)
-      draw_text("Adam Gardner (@philomory)",250)
+      draw_text("Adam Gardner",250)
       draw_text("Additional Art",400)
-      draw_text("Jessie (@lostwombat)",450)
+      draw_text("Jessie",450)
       draw_text("Alagard and Romulus fonts by Pix3M",600)
     end
     
