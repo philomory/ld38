@@ -9,11 +9,10 @@ class Game < Gosu::Window
   attr_accessor :paused 
   attr_reader :game_state, :world, :player, :enemies, :level, :animation_manager
   def initialize
-    super 896, 690, Settings[:fullscreen]
-    
     $game = self
-    
     Settings.load
+
+    super 896, 690, Settings[:fullscreen]
 
     @input_manager = InputManager
     @animation_manager = AnimationManager.new(self)
@@ -30,6 +29,7 @@ class Game < Gosu::Window
   
   def toggle_fullscreen!
     Settings[:fullscreen] = !Settings[:fullscreen]
+    Settings.save
     self.fullscreen = Settings[:fullscreen]
   end
     
