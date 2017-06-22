@@ -19,8 +19,8 @@ class GameState
       @options << SimpleOption.new(text,blk)
     end
     
-    def add_slider(text,min,cur,max,&blk)
-      @options << SliderOption.new(text,min,cur,max,blk)
+    def add_slider(text,min,cur,max,auto: true, &blk)
+      @options << SliderOption.new(text,min,cur,max,auto,blk)
     end
     
     def menu_start_pos
