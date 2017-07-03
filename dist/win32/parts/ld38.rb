@@ -1,3 +1,4 @@
+#encoding: UTF-8
 #!/usr/bin/env ruby
 
 require 'gosu'
@@ -11,10 +12,10 @@ MEDIA_ROOT = File.join(APP_ROOT,'media')
 DATA_ROOT = File.join(APP_ROOT,'data')
 SETTINGS_DIR = File.join(ENV['APPDATA'],'strangeness')
 
-FileUtils.mkdir_p SETTINGS_DIR unless File.dir?(SETTINGS_DIR)
+FileUtils.mkdir_p SETTINGS_DIR unless File.directory?(SETTINGS_DIR)
 
 SETTINGS_FILE = File.join(SETTINGS_DIR,'settings.yml')
 
 require_all File.join(File.dirname(__FILE__),'src')
 
-Game.play!
+Game.play! unless defined?(Ocra)

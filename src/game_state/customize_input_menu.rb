@@ -51,7 +51,7 @@ class GameState
     
     def finish
       InputManager.current_manager.bindings = @bindings
-      $game.game_state = GameState::FadeTransition.new(self,GameState::ReviewInputBindings.new)    
+      $game.game_state = GameState::FadeTransition.new(self,GameState::ConfirmInputBindings.new)    
     end
       
     

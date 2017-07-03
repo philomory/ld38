@@ -56,6 +56,21 @@ namespace :build do
     cp 'README.md', File.join(MAC_BUILD_PATH,"README.txt")
   end
   
+=begin
+  #TODO: Make window build work on windows as well as through Wine
+  desc "Windows Build"
+  task :win => ['clean:win', WIN_BUILD_PATH, WIN_TMP_PATH] do
+    cp 'dist/win32/parts/ld38.rb', WIN_TMP_PATH
+    cp 'dist/win32/parts/Strangeness.bat', WIN_BUILD_PATH
+    cp_r 'src', WIN_TMP_PATH
+    cp_r 'data', WIN_TMP_PATH
+    cp_r 'media', WIN_TMP_PATH
+    cp 'LICENSE', File.join(WIN_BUILD_PATH,"LICENSE.txt")
+    cp 'README.md', File.join(WIN_BUILD_PATH,"README.txt")
+    sh "env -u GEM_HOME wine cmd /c ocra --windows --output #{File.join(WIN_BUILD_PATH,'Strangeness.exe')} #{File.join(WIN_TMP_PATH,'ld38.rb')} #{File.join(WIN_TMP_PATH,'data')} #{File.join(WIN_TMP_PATH,'media')}"
+  end
+=end 
+   
   desc "Windows Build"
   task :win => ['clean:win', 'dist/win32/build/Strangeness', 'dist/win32/parts/ruby.zip'] do
     Zip::File.foreach('dist/win32/parts/ruby.zip') {|f| f.extract File.join(WIN_BUILD_PATH,f.name) }

@@ -1,17 +1,26 @@
 class GameState
-  class ReviewInputBindings < Menu
+  class ConfirmInputBindings < Menu
     
     def setup_menu
-      @title = "Current Bindings"
-      add_option("Back") { back }
-      add_option("Customize Bindings") { transition_to(GameState::CustomizeInputMenu.new) }
-      add_option("Restore Defaults") { InputManager.restore_default_bindings; MediaManager.play_sfx("portal"); }
+      @title = "New Bindings"
+      add_option("Accept") { accept }
+      add_option("Cancel") { cancel }
     end
     
     def menu_start_pos
       475
     end
-      
+    
+    def accept
+      InputManager.save_bindings
+      back
+    end
+    
+    def cancel
+      InputManager.load_from_settings
+      back
+    end
+    
     def back
       transition_to(GameState::ConfigMenu.new)
     end
